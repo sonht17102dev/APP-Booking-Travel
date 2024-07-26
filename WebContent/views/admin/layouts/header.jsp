@@ -27,7 +27,7 @@
 <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest"
 	crossorigin="anonymous"></script>
 <script
-	src="<c:url value="views/admin/admin_js/datatables-simple-demo.js" />"></script>
+	src="<c:url value="views/admin/js/datatables-simple-demo.js" />"></script>
 <script
 	src="https://cdn.ckeditor.com/ckeditor5/29.0.0/classic/ckeditor.js"></script>
 

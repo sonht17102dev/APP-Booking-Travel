@@ -9,7 +9,7 @@
                   <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                   Bảng điều khiển
               </a>
-              <a class="nav-link"  href="/admin/tour">
+              <a class="nav-link"  href="${pageContext.servletContext.contextPath}/admin/tour">
                   <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
                   Tour Management
               </a>

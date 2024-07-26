@@ -1,18 +1,12 @@
 package com.sonht.controllerAdmin;
 
 import java.io.IOException;
-import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import org.apache.jasper.compiler.NewlineReductionServletWriter;
-import org.eclipse.jdt.internal.compiler.IDebugRequestor;
 
 import com.google.gson.Gson;
 import com.sonht.model.User;
@@ -101,14 +95,9 @@ public class CustomerController extends BaseController {
 
 	
 	private void updateUser(HttpServletRequest request, HttpServletResponse response, String command) throws Exception {
-		// read user info from form data
-		int id = Integer.parseInt(request.getParameter("userId"));
-		String fullName = request.getParameter("fullnameUp");
-		String phoneNumber = request.getParameter("phoneNumberUp");
-		String address = request.getParameter("addressUp");
-		int role = Integer.parseInt(request.getParameter("roleUp"));
-		// create a new user object
-		User user = new User(id, fullName, phoneNumber, address, role);
+		// read user info from form data and then create a new user object
+		User user = new User(Integer.parseInt(request.getParameter("userId")), request.getParameter("fullnameUp"), 
+				request.getParameter("phoneNumberUp"), request.getParameter("addressUp"), Integer.parseInt(request.getParameter("roleUp")));
 		List<String> messageErrors = validateUser(user, command);
 		
 		if (messageErrors.size() != 0) {
@@ -123,17 +112,10 @@ public class CustomerController extends BaseController {
 	}
 
 	private void addUser(HttpServletRequest request, HttpServletResponse response, String command) throws Exception {
-		// Get data from form add User
-		String fullName = request.getParameter("fullnameAdd");
-		String email = request.getParameter("emailAdd");
-		String phoneNumber = request.getParameter("phoneNumberAdd");
-		String address = request.getParameter("addressAdd");
-		String username = request.getParameter("usernameAdd");
-		String password = request.getParameter("passwordAdd");
-		String role = request.getParameter("roleAdd");
-		// create a User
-		User user = new User(username, password, fullName, email, phoneNumber, address, "active",
-				Integer.parseInt(role));
+		// get data and create a User
+		User user = new User(request.getParameter("usernameAdd"), request.getParameter("passwordAdd"), request.getParameter("fullnameAdd"),
+				request.getParameter("emailAdd"), request.getParameter("phoneNumberAdd"), request.getParameter("addressAdd"), "active",
+				Integer.parseInt(request.getParameter("roleAdd")));
 		List<String> messageErrors = validateUser(user, command);
 		
 		if (messageErrors.size() != 0) {
@@ -150,7 +132,6 @@ public class CustomerController extends BaseController {
 	private void listUsers(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		List<User> listUsers = getUserDAO().getAllUsers();
 		request.setAttribute("list_users", listUsers);
-//		request.setAttribute("messagesError", null);
 		request.getRequestDispatcher("/views/admin/pages/customer/manageCustomer.jsp").forward(request, response);
 	}
 
@@ -176,7 +157,6 @@ public class CustomerController extends BaseController {
 		response.setCharacterEncoding("utf-8");
 		// read user id from form data
 		String userId = request.getParameter("userId");
-//		System.out.println(userId);
 		// get user from db
 		User userFromDB = getUserDAO().getUserById(userId);
 		// create JSON string convert object to JSON

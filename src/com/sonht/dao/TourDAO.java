@@ -26,16 +26,16 @@ public class TourDAO {
 			rs = statement.executeQuery(sql);
 			while(rs.next()) {
 				// retrieve data from result set row and create new student object
-//				Tour tour = new Tour(rs.getInt("id"), rs.getString("username"), rs.getString("password"), 
-//						rs.getString("fullname"), rs.getString("email"), rs.getString("phone_number"), 
-//						rs.getString("address"), rs.getString("status"), rs.getInt("role_id"));
+				Tour tour = new Tour(rs.getInt("id"), rs.getString("name"), rs.getString("image"), 
+						rs.getString("description"), rs.getString("start_date"), rs.getString("duetime"), 
+						rs.getDouble("price"), rs.getString("address"), rs.getString("status"));
 				
 				// add it to the students
-//				list.add(tour);
+				list.add(tour);
 			}
 			return list;
 		} finally {
-			close(connection, statement, preStatement, rs);
+			close(connection, statement, null, rs);
 		}
 	}
 

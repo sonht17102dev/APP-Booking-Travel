@@ -1,12 +1,138 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
+	pageEncoding="UTF-8"%>
+<%@ include file="/views/admin/layouts/taglib.jsp"%>
 
-</body>
-</html>
+
+<%@include file="/views/admin/layouts/header.jsp"%>
+<%@include file="/views/admin/layouts/navbar.jsp"%>
+
+<%-- User sidebar jsp page --%>
+<div id="layoutSidenav">
+	<div id="layoutSidenav_nav">
+		<%@include file="/views/admin/layouts/sidebar.jsp"%>
+	</div>
+
+	<div id="layoutSidenav_content">
+		<main>
+            <div class="container-fluid px-4">
+                <h1 class="mt-4">List Tour Management</h1>
+                <div class="card mb-4">
+                    <div class="card-header">
+						
+						<button type="button" class="btn btn-success "
+							data-bs-toggle="modal" data-bs-target="#modalAddTour">
+							Add new</button>
+						<!-- Modal Add-->
+						<%@ include file="/views/admin/pages/tour/addModalTour.jsp" %>
+						<!-- Modal Add-->
+					</div>
+                    <div class="card-body">
+                        <table id="datatablesSimple">
+                            <thead>
+                            <tr style="background-color: gray !important;">
+                            	
+                                <th>Tour Name</th>
+                                <th>Image</th>
+                                <th>Describe</th>
+                                <th>Start date</th>
+                                <th>End date</th>
+                                <th>Address</th>
+                                <th>Action</th>
+                            </tr>
+                            </thead>
+                            
+                            <tbody>
+                            <c:forEach var="tour" items="${list_tours}">
+                                <tr>
+                                    <td>${tour.name}</td>
+                                    <td style="width:200px"><img style="width:100%;" src="${pageContext.servletContext.contextPath}/${tour.image}"></td>
+                                    <td><a href="detail">Xem chi tiết</a></td>
+                                    <td>${tour.startDate}</td>
+                                    <td>${tour.duetime}</td>
+                                    <td>${tour.address}</td>
+                                    <td>
+	                                    <button type="button" class="btn btn-primary update-btn" data-bs-toggle="modal"
+	                                        data-bs-target="#modalUpdate" onclick="handlerUpdateButton(${tour.id})">
+	                                        Update</button>
+	                                   <!--  <button type="button" class="btn btn-warning " data-bs-toggle="modal"
+	                                        data-bs-target="#modalDetail">Detail</button> -->
+                                        <button type="button" class="btn btn-danger " data-bs-toggle="modal"
+	                                        data-bs-target="#modalDelete" onclick="handlerDeleteButton(${tour.id})">Delete</button>
+                                    </td>
+                                </tr>
+	                            <!-- Modal update start -->
+	                            <%@ include file="/views/admin/pages/tour/updateModalTour.jsp" %>
+	                            <!-- Modal update end -->
+
+                            	<!-- Modal Delete start-->
+                            	<div class="modal fade" tabindex="-1" id="modalDelete"
+			                         aria-labelledby="exampleModalLabel" aria-hidden="true">
+			                      <div class="modal-dialog">
+			                        <div class="modal-content">
+			                          <div class="modal-header">
+			                            <h5 class="modal-title title-delete" id="exampleModalLabel"></h5>
+			                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+			                                    aria-label="Close"></button>
+			                          </div>
+			                          <div class="modal-body">
+			                          	<p id="content-delete"></p>
+			                            <form  method="post" 
+			                            	action="${pageContext.servletContext.contextPath}/admin/customer">
+			                              <input type="hidden" class="form-control" name="userId" id="userIdDelete" value="${tempUser.id}">
+			                              <input type="hidden" class="form-control" name="command" value="DELETE">
+			                              <div class="modal-footer" style="margin-top: 20px">
+			                                <button type="button" class="btn btn-secondary"
+			                                        data-bs-dismiss="modal">
+			                                  Close
+			                                </button>
+			                                <button type="submit" class="btn btn-primary">Delete</button>
+			
+			                              </div>
+			                            </form>
+			                          </div>
+			
+			                        </div>
+			                      </div>
+			                    </div>
+                            	<!-- Modal Delete end-->
+                            </c:forEach>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+       	</main>
+		<footer class="py-4 bg-light mt-auto"> </footer>
+	</div>
+</div>
+<script>
+
+	function handlerUpdateButton(id) {
+		fetch("/PRJ321x_Project1_BookingTravel/admin/tour?command=LOAD&userId=" + parseInt(id))
+	    .then(response => response.json())
+	    .then(data => {
+			// Display data get from BE to form update
+			document.getElementById("fullnameUp").value = data.fullname;
+			document.getElementById("emailUp").value = data.email;
+			document.getElementById("phoneNumberUp").value = data.phoneNumber;
+			document.getElementById("addressUp").value = data.address;
+			document.getElementById("usernameUp").value = data.username;
+			document.getElementById("roleUp").value = data.roleId;
+	    });
+	}
+	function handlerDeleteButton(id) {
+		fetch("/PRJ321x_Project1_BookingTravel/admin/tour?command=DELETE&userId=" + parseInt(id))
+	    .then(response => response.json())
+	    .then(data => {
+			//console.log(data)
+			// Display data get from BE to form open
+	    	document.getElementById("userIdDelete").value = data.id;
+	    	document.getElementById("content-delete").textContent = data.username + ' will be deleted by the system!';
+	    	document.querySelector(".title-delete").textContent = 'Are you sure to delete ' + data.username + ' User ?';
+	    	
+	    });
+	}
+	
+	
+</script>
+<%@include file="/views/admin/layouts/footer.jsp"%>

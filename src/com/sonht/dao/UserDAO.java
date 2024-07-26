@@ -35,7 +35,7 @@ public class UserDAO {
 			}
 			return list;
 		} finally {
-			close(connection, statement, preStatement, rs);
+			close(connection, statement, null, rs);
 		}
 	}
 	
