@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServlet;
 
 import com.sonht.dao.TourDAO;
 import com.sonht.dao.UserDAO;
+import com.sonht.model.Tour;
 import com.sonht.model.User;
 
 /**
@@ -26,7 +27,10 @@ public class BaseController extends HttpServlet {
 	public TourDAO getTourDAO() {
 		return new TourDAO();
 	}
-
+	
+	public Tour validateTour(Tour tour) {
+		return tour;
+	}
 	public List<String> validateUser(User user, String command) {
 	    List<String> messagesError = new ArrayList<>();
 

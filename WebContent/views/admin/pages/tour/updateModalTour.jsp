@@ -1,71 +1,78 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="/views/admin/layouts/taglib.jsp"%>
+<div class="modal fade"  tabindex="-1" id="modalUpdate${tour.id}" 
+     aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg ">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabell">Update</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+		<form method="POST" action="${pageContext.servletContext.contextPath}/admin/tour" 
+		enctype="multipart/form-data">
+			
+			<input type="hidden" name="tourId" id="tourIdUp" value="${tour.id}">
+			<input type="hidden" name="commandTour" value="UPDATE">
+			<div class="col">
+				<div class="row">
+					<div class="col-6">
+						<label for="tournameUp" class="col-form-label">Tour name:</label> 
+						<input type="text" class="form-control" id="tournameUp" name="tournameUp" value="${tour.name}">
+					</div>
+					<div class="col-6">
+						<label for="priceUp" class="col-form-label">Price (USD):</label> 
+						<input type="number" class="form-control" id="priceUp" name="priceUp"  value="${tour.price}">
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-6">
+						<label for="startDateUp" class="col-form-label">Start date:</label> 
+						<input type="date" class="form-control" id="startDateUp" name="startDateUp" value="${tour.startDate}" >
+					</div>
+					<div class="col-6">
+						<label for="duetimeUp" class="col-form-label">End date:</label> 
+						<input type="date" class="form-control" id="duetimeUp" name="duetimeUp" value="${tour.duetime}">
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-6">
+						<label for="addressUp" class="col-form-label">Tour address:</label> 
+						<input type="text" class="form-control" id="addressUp" name="addressUp" value="${tour.address}">
+					</div>
+					<div class="col-6">
+						<label for="fileUp" class="col-form-label">Description photo:</label> 
+						<input type="file" class="form-control" id="fileUp" name="fileUp"  value="${tour.image}">
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-12  ">
+						<label for="editorUp${tour.id}" class="col-form-label">Description:</label>
+						<textarea name="editorUp${tour.id}" id="editorUp${tour.id}" cols="30" rows="30" >${tour.description}</textarea>
+					</div>
+				</div>
+			</div>
+		
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary"
+					data-bs-dismiss="modal">Close</button>
+				<button type="submit" class="btn btn-primary">Save
+					changes</button>
+			</div>
+		</form>
+      </div>
+
+    </div>
+  </div>
+</div>
 <!-- Modal Update-->
-				                <div class="modal fade"  tabindex="-1" id="modalUpdate"
-				                     aria-labelledby="exampleModalLabel" aria-hidden="true">
-				                  <div class="modal-dialog modal-lg ">
-				                    <div class="modal-content">
-				                      <div class="modal-header">
-				                        <h5 class="modal-title" id="exampleModalLabell">Update</h5>
-				                        <button type="button" class="btn-close" data-bs-dismiss="modal"
-				                                aria-label="Close"></button>
-				                      </div>
-				                      <div class="modal-body">
-										<form action="${pageContext.request.contextPath}/admin/customer" method="post">
-											<input type="hidden" name="userId" value="${tempUser.id}">
-											<input type="hidden" name="command" value="UPDATE">
-											<div class="col">
-												<div class="row">
-													<div class="col-6  ">
-														<label for="fullnameUp" class="col-form-label">Fullname:</label> <input
-															type="text" class="form-control" id="fullnameUp" name="fullnameUp"
-															value="123">
-													</div>
-													<div class="col-6  ">
-														<label for="emailUp" class="col-form-label">Email:</label> <input
-															type="text" class="form-control" id="emailUp" name="emailUp"
-															disabled>
-													</div>
-													<div class="col-6  ">
-														<label for="phoneNumberUp" class="col-form-label">Phone number:</label> <input
-															type="text" class="form-control" id="phoneNumberUp" name="phoneNumberUp"
-															>
-													</div>
-													<div class="col-6  ">
-														<label for="addressUp" class="col-form-label">Address:</label> <input
-															type="text" class="form-control" id="addressUp" name="addressUp"
-															>
-													</div>
-													<div class="col-6  ">
-														<label for="usernameUp" class="col-form-label">User name:</label> <input
-															type="text" class="form-control" id="usernameUp" name="usernameUp"
-															disabled>
-													</div>
-													
-													<div class="col-6  ">
-														<label for="roleUp" class="col-form-label">Role:</label> 
-														<div>
-															<select name="roleUp" class="form-select" id="roleUp">
-																<option value="-1">Choose type role</option>
-																<option value="0">Admin</option>
-																<option value="1">User</option>
-															</select>
-														</div>
-													</div>
-												</div>
-											</div>
-						
-											<div class="modal-footer">
-												<button type="button" class="btn btn-secondary"
-													data-bs-dismiss="modal">Close</button>
-												<button type="submit" class="btn btn-primary">Save
-													changes</button>
-											</div>
-										</form>
-				                      </div>
-				
-				                    </div>
-				                  </div>
-				                </div>
-				                <!-- Modal Update-->
+<script>
+	
+	ClassicEditor.create(document.querySelector('#editorUp' + ${tour.id}))
+	.then(edit => {
+		const content = document.querySelector('#editorUp' + ${tour.id}).value;
+		edit.setData(content);
+	})	
+</script>

@@ -5,7 +5,7 @@
       <div class="sb-sidenav-menu">
           <div class="nav">
 
-              <a class="nav-link" href="/admin/">
+              <a class="nav-link" href="${pageContext.servletContext.contextPath}/admin/tour">
                   <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                   Bảng điều khiển
               </a>
@@ -13,11 +13,11 @@
                   <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
                   Tour Management
               </a>
-              <a class="nav-link"  href="/admin/post">
+              <a class="nav-link"  href="${pageContext.servletContext.contextPath}/admin/post">
                   <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
                   News Management
               </a>
-              <a class="nav-link" href="/admin/employee">
+              <a class="nav-link" href="${pageContext.servletContext.contextPath}/admin/employee">
                   <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
                   Employee Management
               </a>
@@ -25,11 +25,11 @@
                   <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
                   Customer Management
               </a>
-              <a class="nav-link" href="/admin/booking">
+              <a class="nav-link" href="${pageContext.servletContext.contextPath}/admin/booking">
                   <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
                   Booking Management
               </a>
-              <a class="nav-link" href="/admin/comment">
+              <a class="nav-link" href="${pageContext.servletContext.contextPath}/admin/comment">
                   <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
                   Comment Management
               </a>

@@ -45,6 +45,10 @@ public class Tour {
 		return description;
 	}
 
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
 	public String getStartDate() {
 		return startDate;
 	}
