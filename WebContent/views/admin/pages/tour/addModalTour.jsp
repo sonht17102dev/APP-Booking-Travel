@@ -75,10 +75,4 @@
 	.catch(error => {
 		//console.error(error);
 	});
-	ClassicEditor.create(document.querySelector('#editorUp')).then(edit => {
-		//console.log("da" + edit);
-	})
-	.catch(error => {
-		//console.error(error);
-	});
 </script>

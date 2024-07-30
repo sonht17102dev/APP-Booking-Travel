@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<jsp:forward page="/admin"/> 
-<% response.sendRedirect("/admin"); %>
+<%-- <jsp:forward page="/admin"/>  --%>
+<% response.sendRedirect(pageContext.getServletContext().getContextPath() + "/home"); %>
 </body>
 </html>

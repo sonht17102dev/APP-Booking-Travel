@@ -17,6 +17,9 @@ CREATE TABLE user (
     status VARCHAR(20),
     role_id INT
 );
+--
+-- Table structure for table `tour`
+--
 DROP TABLE IF EXISTS `tour`;
 CREATE TABLE tour (
     id INT AUTO_INCREMENT PRIMARY KEY,
@@ -28,6 +31,36 @@ CREATE TABLE tour (
     address VARCHAR(255) NOT NULL,
     price double NOT NULL,
     status VARCHAR(20) NOT NULL
+);
+--
+-- Table structure for table `booking`
+--
+DROP TABLE IF EXISTS `booking`;
+CREATE TABLE booking (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT NOT NULL,
+    tour_id INT NOT NULL,
+    created_date varchar(20) NOT NULL,
+    status VARCHAR(20) NOT NULL
+);
+--
+-- Table structure for table `people`
+--
+DROP TABLE IF EXISTS `people`;
+CREATE TABLE people (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(100) NOT NULL,
+    price double NOT NULL
+);
+--
+-- Table structure for table `booking_people`
+--
+DROP TABLE IF EXISTS `booking_people`;
+CREATE TABLE booking_people (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    booking_id INT NOT NULL,
+    people_id INT NOT NULL,
+    quantity INT NOT NULL
 );
 --
 -- Dumping data for table `user`
@@ -98,4 +131,34 @@ End of service.</p><p><strong>NOTE:</strong> B - Breakfast</p>
 <h2><strong>HOTLINE:&nbsp;</strong></h2><h2><a href=\"tel:+84 91 1273003\"><strong>(+84) 909 284 554</strong></a
 ><br><a href=\"tel:+84 91 1273003\"><strong>(+84) 911 273 003</strong></a></h2>
 <p>Please contact us for more tailor-made tours: Info@saigontouristvietnam.com</p>',
-'2024-07-28', '2024-07-31', 'Da Lat City', 99, 'active')
+'2024-07-28', '2024-07-31', 'Da Lat City', 99, 'active');
+
+
+--
+-- Dumping data for table `booking`
+--
+
+-- add data tour samples
+INSERT INTO booking (user_id, tour_id, created_date, status) VALUES 
+(1, 1, '2024-07-20', 'active'),
+(1, 2, '2024-07-25', 'active'),
+(2, 1, '2024-06-30', 'active'),
+(2, 3, '2024-03-22', 'active'),
+(3, 2, '2024-04-07', 'active'),
+(3, 3, '2024-07-27', 'active');
+
+--
+-- Dumping data for table `people`
+--
+
+-- add data tour samples
+INSERT INTO people (name, price) VALUES 
+('John Doe', 50), ('Jane Smith', 55), ('Critiano Ronaldo', 100);
+
+--
+-- Dumping data for table `booking_people`
+--
+
+-- add data tour samples
+INSERT INTO booking_people (booking_id, people_id, quantity) VALUES 
+(1, 1, 1), (1, 1, 2), (2, 2, 1), (2, 2, 2), (3, 2, 2);

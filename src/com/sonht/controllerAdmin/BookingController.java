@@ -17,25 +17,28 @@ import com.sonht.model.Tour;
  */
 @WebServlet("/admin/booking")
 public class BookingController extends BaseController {
-	
+
 	private static final long serialVersionUID = 1L;
-	
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		try {
 			String command = request.getParameter("command");
 			if (command == null) {
 				command = "LIST";
 			}
 			switch (command) {
-				case "LOAD" -> loadBooking(request, response);
-				default -> listBookings(request, response);
+			case "LOAD" -> loadBooking(request, response);
+			default -> listBookings(request, response);
 			}
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 	}
 
 	private Object loadBooking(HttpServletRequest request, HttpServletResponse response) {
@@ -43,12 +46,11 @@ public class BookingController extends BaseController {
 		return null;
 	}
 
-	private void listBookings(HttpServletRequest request, HttpServletResponse response) {
+	private void listBookings(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 //		List<Booking> listBookings = getBookingDAO().getAllTBookings();
 //		request.setAttribute("list_bookings", listBookings);
-//		request.getRequestDispatcher("/views/admin/pages/booking/manageBooking.jsp").forward(request, response);
+		request.getRequestDispatcher("/views/admin/pages/booking/manageBooking.jsp").forward(request, response);
 	}
-
-	
 
 }
