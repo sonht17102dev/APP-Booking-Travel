@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.sonht.controllerAdmin.BaseController;
+import com.sonht.model.Booking;
 import com.sonht.model.Tour;
 
 /**
@@ -32,10 +33,13 @@ public class TourController extends BaseController {
 		}
 		
 	}
-
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		int userId = Integer.parseInt(request.getParameter("userId"));
+		int tourId = Integer.parseInt(request.getParameter("tourId"));
+		int quantityAdults = Integer.parseInt(request.getParameter("adults"));
+		int quantityChildren = Integer.parseInt(request.getParameter("children"));
+		Booking booking = new Booking(userId, tourId, quantityAdults, quantityChildren, "2024-07-31", "active");
+		System.out.println(booking);
 	}
 
 }

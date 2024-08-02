@@ -10,7 +10,15 @@
       <div class="container">
         <div class="row no-gutters slider-text js-fullheight align-items-center justify-content-start" data-scrollax-parent="true">
           <div class="col-md-9 ftco-animate" data-scrollax=" properties: { translateY: '70%' }">
-            <h1 class="mb-4" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }"><strong>Explore <br></strong> your amazing city</h1>
+          	<c:if test="${userLogin != null }">
+            	<h1 class="mb-4" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }">
+            	<strong>Welcome back <br></strong> ${userLogin.username}
+            	</h1>
+          	</c:if>
+          	<c:if test="${userLogin == null }">
+            	<h1 class="mb-4" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }">
+            	<strong>Explore <br></strong> your amazing city</h1>
+            </c:if>
             <p data-scrollax="properties: { translateY: '30%', opacity: 1.6 }">Find great places to stay, eat, shop, or visit from local experts</p>
             <div class="block-17 my-4">
               <form action="" method="post" class="d-block d-flex">
@@ -38,7 +46,6 @@
       </div>
     </div>
 	<!-- Form search end -->
-	
     <section class="ftco-section services-section bg-light">
       <div class="container">
         <div class="row d-flex">

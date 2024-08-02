@@ -34,22 +34,34 @@
     
   <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
     <div class="container">
-      <a class="navbar-brand" href="/">BookingTravel</a>
+      <a class="navbar-brand" href="${pageContext.servletContext.contextPath}">BookingTravel</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="oi oi-menu"></span> Menu
       </button>
 
       <div class="collapse navbar-collapse" id="ftco-nav">
         <ul class="navbar-nav ml-auto">
-          <li class="nav-item active"><a href="index.html" class="nav-link">Home</a></li>
+          <li class="nav-item active"><a href="${pageContext.servletContext.contextPath}" class="nav-link">Home</a></li>
           <li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
           <li class="nav-item"><a href="tour.html" class="nav-link">Tour</a></li>
           <li class="nav-item"><a href="hotel.html" class="nav-link">Hotels</a></li>
           <li class="nav-item"><a href="blog.html" class="nav-link">Blog</a></li>
           <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
-          <li class="nav-item">
-	        
-		  </li>
+          <c:if test='${userLogin == null}'>
+	          <li class="nav-item">
+		        <a href="${pageContext.servletContext.contextPath}/login" class="nav-link btn-success rounded">Login</a>
+		      </li>
+	      </c:if>
+	       <c:if test='${userLogin != null}'>
+	          <li class="nav-item">
+	          	<form action="${pageContext.servletContext.contextPath}/logout" method="post">
+			        <button type="submit" class="nav-link btn btn-warning rounded">Logout</button>
+	          	</form>
+		      </li>
+	      </c:if>
+		  <li class="nav-item">
+	        <a href="${pageContext.servletContext.contextPath}/signup" class="nav-link btn-primary rounded">Sign Up</a>
+	      </li>
         </ul>
       </div>
     </div>

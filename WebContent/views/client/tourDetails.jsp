@@ -49,16 +49,20 @@
 			</div>
 			<p>${tour.description}</p>
 		</div>
-		<form action="#" class="w-100">
+		<form action="${pageContext.servletContext.contextPath}/booking" class="w-100" method="POST">
+			<input type="hidden" value="${tour.id}" name="tourId">
+			<input type="hidden" value="1" name="userId">
 			<div class="row">
 				<div class="col-md-6 pr-md-5">
 					<div class="form-group">
-						<input type="text" class="form-control" placeholder="Your Name">
+						<label for="adults">Quantity Adults (${tour.price}$ / people)</label>
+						<input type="text" class="form-control" name="adults" placeholder="Quantity Adults">
 					</div>
 				</div>
 				<div class="col-md-6 pr-md-5">
 					<div class="form-group">
-						<input type="text" class="form-control" placeholder="Your Name">
+						<label for="children">Quantity Children (${tour.price}$ / people)</label>
+						<input type="text" class="form-control"  name="children" placeholder="Quantity Child">
 					</div>
 				</div>
 				<div class="col-md-12 pr-md-5 d-flex justify-content-center w-100">

@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.sonht.config.DatabaseContext;
+import com.sonht.controllerAdmin.BaseController;
 import com.sonht.model.User;
 
 public class UserDAO {
@@ -54,17 +55,19 @@ public class UserDAO {
 	public void addUser(User user) throws Exception {
 		try {
 			connection = new DatabaseContext().getConnection();
+			
 			String sql = "insert into user "
-					+ "(username, password, fullname, email, phone_number, status, role_id) "
-					+ "values (?, ?, ?, ?, ?, ?, ?) ";
+					+ "(username, password, fullname, email, phone_number, address, status, role_id) "
+					+ "values (?, ?, ?, ?, ?, ?, ?, ? ) ";
 			preStatement = connection.prepareStatement(sql);
 			preStatement.setString(1, user.getUsername());
 			preStatement.setString(2, user.getPassword());
 			preStatement.setString(3, user.getFullname());
 			preStatement.setString(4, user.getEmail());
 			preStatement.setString(5, user.getPhoneNumber());
-			preStatement.setString(6, user.getStatus());
-			preStatement.setInt(7, user.getRoleId());
+			preStatement.setString(6, user.getAddress());
+			preStatement.setString(7, user.getStatus());
+			preStatement.setInt(8, user.getRoleId());
 			preStatement.execute();
 		} finally {
 			close(connection, null, preStatement, null);
@@ -177,6 +180,45 @@ public class UserDAO {
 			
 		} finally {
 			close(connection, null, preStatement, null);
+		}
+	}
+	
+	public User checkEmailExist(String userMail) throws Exception {
+		try {
+			String query = "select * from user where email = ?";
+			connection = new DatabaseContext().getConnection();
+			preStatement = connection.prepareStatement(query);
+			preStatement.setString(1, userMail);
+			
+			rs = preStatement.executeQuery();
+			User userByEmail = null;
+			if(rs.next()) {
+				userByEmail = new User(rs.getInt("id"), rs.getString("username"), rs.getString("password"), rs.getString("fullname"),
+						rs.getString("email"), rs.getString("phone_number"), rs.getString("address"),rs.getString("status"),
+						rs.getInt("role_id"));
+			} 
+			return userByEmail;
+		} finally {
+			close(connection, null, preStatement, rs);
+		}
+	}
+	public User checkUsernameExist(String username) throws Exception {
+		try {
+			String query = "select * from user where username = ?";
+			connection = new DatabaseContext().getConnection();
+			preStatement = connection.prepareStatement(query);
+			preStatement.setString(1, username);
+			
+			rs = preStatement.executeQuery();
+			User userByUsername = null;
+			if(rs.next()) {
+				userByUsername = new User(rs.getInt("id"), rs.getString("username"), rs.getString("password"), rs.getString("fullname"),
+						rs.getString("email"), rs.getString("phone_number"), rs.getString("address"),rs.getString("status"),
+						rs.getInt("role_id"));
+			} 
+			return userByUsername;
+		} finally {
+			close(connection, null, preStatement, rs);
 		}
 	}
 }

@@ -40,28 +40,13 @@ CREATE TABLE booking (
     id INT AUTO_INCREMENT PRIMARY KEY,
     user_id INT NOT NULL,
     tour_id INT NOT NULL,
+    adults_quantity INT NOT NULL,
+    children_quantity INT NOT NULL,
     created_date varchar(20) NOT NULL,
     status VARCHAR(20) NOT NULL
 );
---
--- Table structure for table `people`
---
-DROP TABLE IF EXISTS `people`;
-CREATE TABLE people (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(100) NOT NULL,
-    price double NOT NULL
-);
---
--- Table structure for table `booking_people`
---
-DROP TABLE IF EXISTS `booking_people`;
-CREATE TABLE booking_people (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    booking_id INT NOT NULL,
-    people_id INT NOT NULL,
-    quantity INT NOT NULL
-);
+
+
 --
 -- Dumping data for table `user`
 --
@@ -131,7 +116,19 @@ End of service.</p><p><strong>NOTE:</strong> B - Breakfast</p>
 <h2><strong>HOTLINE:&nbsp;</strong></h2><h2><a href=\"tel:+84 91 1273003\"><strong>(+84) 909 284 554</strong></a
 ><br><a href=\"tel:+84 91 1273003\"><strong>(+84) 911 273 003</strong></a></h2>
 <p>Please contact us for more tailor-made tours: Info@saigontouristvietnam.com</p>',
-'2024-07-28', '2024-07-31', 'Da Lat City', 99, 'active');
+'2024-07-28', '2024-07-31', 'Da Lat City', 99, 'active'),
+('Da Nang tour', 'CauRongDaNang.jpg', 
+'<p><strong>Start at 13:30 and return around 17:30 (tour will depart with at least 4 people).
+</strong></p><p>A half day city tour in Da Nang features tho Non Nuoc carving village, the Cham Museum,
+ a pedicab ride (30 minutes) along han River, and the Marble Mountains.&nbsp;During the short stop at Han market,
+ you can buy unique hand-made souvenirs.</p><h3><strong>ITINERARY</strong></h3><p>Visit the Cham Museum.<br>
+ Enjoy the pecicab ride along Han River (30 minutes).<br>Visit the Marble Mountains and Non Nuoc Beach.<br>
+ Stop at Non Nuoc carving village and Han Market.<br>Overland back to Hoi An.<br>Return to the hotel. 
+ End of tour.</p><p><strong>Departure:</strong>&nbsp;<br>At Saigontourist Da Nang\'s office&nbsp;
+ 10 minutes before prior to departure time.<br>Hotel pick-up.</p><p><strong>PRICE:&nbsp;VND 575,000/ person 
+ for a group of minimum 4 people&nbsp;</strong><br><strong>
+ Validity: From&nbsp;May 1st, 2024&nbsp;to September&nbsp;30th, 2024.</strong></p>',
+'2024-08-01', '2024-08-03', 'Da Nang City', 349, 'active');
 
 
 --
@@ -139,26 +136,10 @@ End of service.</p><p><strong>NOTE:</strong> B - Breakfast</p>
 --
 
 -- add data tour samples
-INSERT INTO booking (user_id, tour_id, created_date, status) VALUES 
-(1, 1, '2024-07-20', 'active'),
-(1, 2, '2024-07-25', 'active'),
-(2, 1, '2024-06-30', 'active'),
-(2, 3, '2024-03-22', 'active'),
-(3, 2, '2024-04-07', 'active'),
-(3, 3, '2024-07-27', 'active');
-
---
--- Dumping data for table `people`
---
-
--- add data tour samples
-INSERT INTO people (name, price) VALUES 
-('John Doe', 50), ('Jane Smith', 55), ('Critiano Ronaldo', 100);
-
---
--- Dumping data for table `booking_people`
---
-
--- add data tour samples
-INSERT INTO booking_people (booking_id, people_id, quantity) VALUES 
-(1, 1, 1), (1, 1, 2), (2, 2, 1), (2, 2, 2), (3, 2, 2);
+INSERT INTO booking (user_id, tour_id, adults_quantity, children_quantity, created_date, status) VALUES 
+(1, 1, 1, 2,'2024-07-20', 'active'),
+(1, 2, 2,1 ,'2024-07-25', 'active'),
+(2, 1, 1, 0, '2024-06-30', 'active'),
+(2, 3, 2, 1, '2024-03-22', 'active'),
+(3, 2, 3,2,'2024-04-07', 'active'),
+(3, 3, 1,1, '2024-07-27', 'active');

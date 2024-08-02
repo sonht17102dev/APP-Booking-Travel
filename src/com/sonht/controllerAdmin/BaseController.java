@@ -6,6 +6,7 @@ import java.util.List;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 
+import com.sonht.dao.BookingDAO;
 import com.sonht.dao.TourDAO;
 import com.sonht.dao.UserDAO;
 import com.sonht.model.Tour;
@@ -26,6 +27,9 @@ public class BaseController extends HttpServlet {
 	
 	public TourDAO getTourDAO() {
 		return new TourDAO();
+	}
+	public BookingDAO getBookingDAO() {
+		return new BookingDAO();
 	}
 	
 	public Tour validateTour(Tour tour) {
@@ -59,27 +63,27 @@ public class BaseController extends HttpServlet {
 	    return messagesError;
 	}
 
-	private boolean isValidFullname(String fullname) {
+	public boolean isValidFullname(String fullname) {
 	    return fullname != null && !fullname.isEmpty();
 	}
 
-	private boolean isValidEmail(String email) {
+	public boolean isValidEmail(String email) {
 	    return email != null && !email.trim().isEmpty() && email.matches(EMAIL_REGEX);
 	}
 
-	private boolean isValidPhoneNumber(String phoneNumber) {
+	public boolean isValidPhoneNumber(String phoneNumber) {
 	    return phoneNumber != null && !phoneNumber.trim().isEmpty() && phoneNumber.matches(PHONE_REGEX);
 	}
 
-	private boolean isValidAddress(String address) {
+	public boolean isValidAddress(String address) {
 	    return address != null && !address.trim().isEmpty();
 	}
 
-	private boolean isValidUsername(String username) {
+	public boolean isValidUsername(String username) {
 	    return username != null && !username.trim().isEmpty();
 	}
 
-	private boolean isValidPassword(String password) {
+	public boolean isValidPassword(String password) {
 	    return password != null && !password.trim().isEmpty();
 	}
 
