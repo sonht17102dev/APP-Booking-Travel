@@ -14,7 +14,7 @@
 
 		<div id="layoutSidenav_content">
 			<main>
-				<h1>Welcome to Administrator Tour Page</h1>
+				<h1>Welcome to Administrator ${adminLogin.username} Tour Page</h1>
 			</main>
 			<footer class="py-4 bg-light mt-auto"> </footer>
 		</div>

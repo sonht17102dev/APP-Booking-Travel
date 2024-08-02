@@ -198,16 +198,18 @@
 <script>
 
 	function handlerUpdateButton(id) {
+		// call api to get user data from BE
 		fetch("/PRJ321x_Project1_BookingTravel/admin/customer?command=LOAD&userId=" + parseInt(id))
 	    .then(response => response.json())
 	    .then(data => {
 			// Display data get from BE to form update
 			document.getElementById("fullnameUp").value = data.fullname;
 			document.getElementById("emailUp").value = data.email;
-			document.getElementById("phoneNumberUp").value = data.phoneNumber;
-			document.getElementById("addressUp").value = data.address;
+			document.getElementById("phoneNumberUp").value = data.phoneNumber ? data.phoneNumber : '';
+			document.getElementById("addressUp").value = data.address ? data.address : '';
 			document.getElementById("usernameUp").value = data.username;
 			document.getElementById("roleUp").value = data.roleId;
+			document.getElementById("userId").value = data.id;
 	    });
 	}
 	

@@ -31,13 +31,10 @@ public class SignUpController extends BaseController {
 		String username = request.getParameter("username");
 		String pass = request.getParameter("password");
 		String repass = request.getParameter("repassword");
-		System.out.println("pass =" + pass);
-		System.out.println("repass =" + repass);
 		String authenPath = "/views/admin/pages/authForm.jsp";
 		// create list String to send error messages to client
 		List<String> messagesError = validateSignUp(email, fullname, username, pass, repass);
 		if (!messagesError.isEmpty()) {
-			System.out.println("chay vao day");
 			request.setAttribute("action", "signup");
 			request.setAttribute("messages", messagesError);
 			request.getRequestDispatcher(authenPath).forward(request, response);
@@ -57,7 +54,6 @@ public class SignUpController extends BaseController {
 					request.getRequestDispatcher(authenPath).forward(request, response);
 				} else {
 					// if pass is not the same as re-password
-//					if (!isValidPassword(pass) && !isValidPassword(repass) && !pass.equals(repass)) {
 					if (!pass.equals(repass)) {
 						request.setAttribute("message", "Re-Password must be the same as password! Try again!");
 						request.setAttribute("action", "signup");

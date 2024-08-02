@@ -59,12 +59,12 @@ public class LoginController extends BaseController {
 					session.setAttribute("message", "Login Success");
 					session.setMaxInactiveInterval(60);
 					request.getRequestDispatcher(adminPath).forward(request, response);
+				} else {
+					session.setAttribute("userLogin", user);
+					session.setAttribute("message", "Login Success");
+					session.setMaxInactiveInterval(60);
+					request.getRequestDispatcher("/index.jsp").forward(request, response);
 				}
-					
-				session.setAttribute("userLogin", user);
-				session.setAttribute("message", "Login Success");
-				session.setMaxInactiveInterval(60);
-				request.getRequestDispatcher("/index.jsp").forward(request, response);
 			}
 
 		} catch (Exception e) {

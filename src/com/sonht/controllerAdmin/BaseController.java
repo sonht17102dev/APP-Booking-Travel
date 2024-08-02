@@ -41,7 +41,7 @@ public class BaseController extends HttpServlet {
 	    if (!isValidFullname(user.getFullname())) {
 	        messagesError.add("Please type your full name");
 	    }
-	    if (!isValidEmail(user.getEmail())) {
+	    if (command.equals("ADD") && !isValidEmail(user.getEmail())) {
 	        messagesError.add("Please type your email or type invalid email");
 	    }
 	    if (!isValidPhoneNumber(user.getPhoneNumber())) {
@@ -50,7 +50,7 @@ public class BaseController extends HttpServlet {
 	    if (!isValidAddress(user.getAddress())) {
 	        messagesError.add("Please type your address");
 	    }
-	    if (!isValidUsername(user.getUsername())) {
+	    if (command.equals("ADD") && !isValidUsername(user.getUsername())) {
 	        messagesError.add("Please type your username");
 	    }
 	    if (command.equals("ADD") && !isValidPassword(user.getPassword())) {

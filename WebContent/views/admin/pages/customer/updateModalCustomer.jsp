@@ -13,34 +13,29 @@
       </div>
       <div class="modal-body">
 		<form action="${pageContext.request.contextPath}/admin/customer" method="post">
-			<input type="hidden" name="userId" value="${tempUser.id}">
+			<input type="hidden" name="userId" id="userId" value="${tempUser.id}">
 			<input type="hidden" name="command" value="UPDATE">
 			<div class="col">
 				<div class="row">
 					<div class="col-6  ">
-						<label for="fullnameUp" class="col-form-label">Fullname:</label> <input
-							type="text" class="form-control" id="fullnameUp" name="fullnameUp"
-							value="123">
+						<label for="fullnameUp" class="col-form-label">Full Name:</label> <input
+							type="text" class="form-control" id="fullnameUp" name="fullnameUp">
 					</div>
 					<div class="col-6  ">
 						<label for="emailUp" class="col-form-label">Email:</label> <input
-							type="text" class="form-control" id="emailUp" name="emailUp"
-							disabled>
+							type="text" class="form-control" id="emailUp" name="emailUp" disabled>
 					</div>
 					<div class="col-6  ">
-						<label for="phoneNumberUp" class="col-form-label">Phone number:</label> <input
-							type="text" class="form-control" id="phoneNumberUp" name="phoneNumberUp"
-							>
+						<label for="phoneNumberUp" class="col-form-label">Phone Number:</label> 
+						<input type="text" class="form-control" id="phoneNumberUp" name="phoneNumberUp">
 					</div>
 					<div class="col-6  ">
 						<label for="addressUp" class="col-form-label">Address:</label> <input
-							type="text" class="form-control" id="addressUp" name="addressUp"
-							>
+							type="text" class="form-control" id="addressUp" name="addressUp">
 					</div>
 					<div class="col-6  ">
-						<label for="usernameUp" class="col-form-label">User name:</label> <input
-							type="text" class="form-control" id="usernameUp" name="usernameUp"
-							disabled>
+						<label for="usernameUp" class="col-form-label">User Name:</label> <input
+							type="text" class="form-control" id="usernameUp" name="usernameUp" disabled>
 					</div>
 					
 					<div class="col-6  ">

@@ -110,20 +110,21 @@ public class UserDAO {
 		}
 	}
 
-	public void updateStudent(User user) throws SQLException {
+	public void updateUser(User user) throws SQLException {
 		try {
 			connection = new DatabaseContext().getConnection();
 			String sql = "update user "
 					+ "set fullname = ?, phone_number = ?, "
 					+ "address = ?, role_id = ? "
 					+ "where id = ? ";
+			
 			preStatement = connection.prepareStatement(sql);
 			preStatement.setString(1, user.getFullname());
 			preStatement.setString(2, user.getPhoneNumber());
 			preStatement.setString(3, user.getAddress());
 			preStatement.setInt(4, user.getRoleId());
 			preStatement.setInt(5, user.getId());
-			
+			System.out.println(user);
 			preStatement.execute();
 		} finally {
 			close(connection, null, preStatement, null);

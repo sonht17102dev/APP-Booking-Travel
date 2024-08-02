@@ -38,7 +38,6 @@ public class CustomerController extends BaseController {
 		try {
 			// read the "command" parameter
 			String command = request.getParameter("command");
-//			System.out.println(command);
 			// if the command is missing, then default to listing users
 			if (command == null) {
 				command = "LIST";
@@ -96,8 +95,15 @@ public class CustomerController extends BaseController {
 	
 	private void updateUser(HttpServletRequest request, HttpServletResponse response, String command) throws Exception {
 		// read user info from form data and then create a new user object
-		User user = new User(Integer.parseInt(request.getParameter("userId")), request.getParameter("fullnameUp"), 
-				request.getParameter("phoneNumberUp"), request.getParameter("addressUp"), Integer.parseInt(request.getParameter("roleUp")));
+		int id =Integer.parseInt(request.getParameter("userId"));
+		String username = request.getParameter("usernameUp");
+		String fullname = request.getParameter("fullnameUp");
+		String email = request.getParameter("emailUp");
+		String phone = request.getParameter("phoneNumberUp");
+		String address = request.getParameter("addressUp");
+		int role = Integer.parseInt(request.getParameter("roleUp"));
+		User user = new User(id, username,fullname,email,phone,address,role);
+		System.out.println(user);
 		List<String> messageErrors = validateUser(user, command);
 		
 		if (messageErrors.size() != 0) {
@@ -105,7 +111,7 @@ public class CustomerController extends BaseController {
 			listUsers(request, response); // return customer page
 
 		} else {
-			getUserDAO().updateStudent(user); // add new User into database
+			getUserDAO().updateUser(user); // update User into database
 			request.setAttribute("messagesError", "success"); // send message success to jsp
 			listUsers(request, response); // return customer page
 		}

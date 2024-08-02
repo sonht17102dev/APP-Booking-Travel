@@ -29,9 +29,11 @@ public class User {
 		this.id = id;
 	}
 
-	public User(int id, String fullname, String phoneNumber, String address, int roleId) {
+	public User(int id, String username, String fullname, String email, String phoneNumber, String address, int roleId) {
 		this.id = id;
+		this.username = username;
 		this.fullname = fullname;
+		this.email = email;
 		this.phoneNumber = phoneNumber;
 		this.address = address;
 		this.roleId = roleId;
