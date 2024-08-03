@@ -119,7 +119,7 @@ public class TourDAO {
 		System.out.println(tour);
 	}
 
-	public void updateTour(Tour tour) throws SQLException {
+	public void updateTour(int id, Tour tour) throws SQLException {
 		try {
 			connection = new DatabaseContext().getConnection();
 			String sql = "update tour " + "set name=?, image=?, description=?, start_date=?, "
@@ -132,7 +132,7 @@ public class TourDAO {
 			preStatement.setString(5, tour.getDuetime());
 			preStatement.setString(6, tour.getAddress());
 			preStatement.setDouble(7, tour.getPrice());
-			preStatement.setInt(8, tour.getId());
+			preStatement.setInt(8, id);
 			preStatement.execute();
 		} finally {
 			close(connection, null, preStatement, null);

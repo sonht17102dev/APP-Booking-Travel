@@ -18,10 +18,27 @@
                 <h1 class="mt-4">List Tour Management</h1>
                 <div class="card mb-4">
                     <div class="card-header">
-						<c:choose>
+						<%-- <c:choose>
 							<c:when test='${messagesError.equals("Delete success")}'>
 								<div class="alert alert-success">
 									<strong>${messagesError}</strong>
+								</div>
+							</c:when>
+							<c:when test='${messagesError != null}'>
+								<div class="alert alert-danger">
+									<c:forEach var="tempMess" items="${messagesError}">
+										<strong>${tempMess }</strong><br>
+									</c:forEach>
+								</div>
+							</c:when>
+							<c:otherwise>
+								
+							</c:otherwise>
+						</c:choose> --%>
+						<c:choose>
+							<c:when test='${messagesError.equals("success")}'>
+								<div class="alert alert-success">
+									<strong>Success!</strong>
 								</div>
 							</c:when>
 							<c:when test='${messagesError != null}'>

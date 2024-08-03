@@ -102,30 +102,72 @@ public class TourController extends BaseController {
 	}
 
 	protected void updateTour(HttpServletRequest request, HttpServletResponse response)
-			throws IOException, ServletException {
+			throws IOException, ServletException, SQLException {
 		int id = Integer.parseInt(request.getParameter("tourId"));
 		String tourName = request.getParameter("tournameUp");
-		double priceAdd = Double.parseDouble(request.getParameter("priceUp"));
+		String priceUp = request.getParameter("priceUp");
 		String start = request.getParameter("startDateUp");
 		String duetime = request.getParameter("duetimeUp");
 		String address = request.getParameter("addressUp");
-		String content = request.getParameter("editorUp");
+		String content = request.getParameter("editorUp" + id);
+		String image = request.getParameter("fileUp");
+		System.out.println(image);
+		
+		
+		Tour tour = null;
+		if (isValidPrice(priceUp))
+			tour = new Tour( tourName, "", content, start, duetime, Double.parseDouble(priceUp), address, "active");
+		else 
+			tour = new Tour( tourName, "", content, start, duetime, 0, address, "active");
+		
+		List<String> messageErrors = validateTour(tour);
 
+		Part filePart = request.getPart("fileUp");
+		String fileName = null;
+		if(filePart == null || filePart.getSize() == 0) {
+			messageErrors.add("Please select a file to upload.");
+		} else {
+			fileName = getFileName(filePart);
+			try (InputStream fileContent = filePart.getInputStream();) {
+				File uploads = new File(getServletContext().getRealPath("/resources/images"));
+				if (!uploads.exists()) {
+					uploads.mkdir();
+				}
+
+				File file = new File(uploads, fileName);
+				Files.copy(fileContent, file.toPath(), StandardCopyOption.REPLACE_EXISTING);
+
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		if (messageErrors.size() != 0) {
+			request.setAttribute("messagesError", messageErrors); // send message fail to jsp
+			listTours(request, response); // return customer page
+		} else {
+			tour.setImage(fileName);
+			getTourDAO().updateTour(id, tour);
+			listTours(request, response);
+		}
+		/*
+		// get data image file from form update
 		Part filePart = request.getPart("fileUp");
 		String fileName = getFileName(filePart);
 		try (InputStream fileContent = filePart.getInputStream();) {
+			// specify the path of image
 			File uploads = new File(getServletContext().getRealPath("/resources/images"));
 			if (!uploads.exists()) {
 				uploads.mkdir();
 			}
-
+			
 			File file = new File(uploads, fileName);
 			Files.copy(fileContent, file.toPath(), StandardCopyOption.REPLACE_EXISTING);
-
-			Tour tour = new Tour(id, tourName, fileName, content, start, duetime, priceAdd, address, "active");
-			System.out.println(tour);
-			if (tour != null) {
-
+			Tour tour = null;
+			if (isValidPrice(priceAdd))
+				tour = new Tour(id, tourName, fileName, content, start, duetime, Double.parseDouble(priceAdd), address, "active");
+//			System.out.println(tour);
+			if (validateTour(tour) != null) {
+				
 				getTourDAO().updateTour(tour);
 				listTours(request, response);
 			}
@@ -133,35 +175,52 @@ public class TourController extends BaseController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		*/
 	}
 
 	protected void addTour(HttpServletRequest request, HttpServletResponse response)
-			throws IOException, ServletException {
+			throws IOException, ServletException, SQLException {
 		String tourName = request.getParameter("tournameAdd");
-		double priceAdd = Double.parseDouble(request.getParameter("priceAdd"));
+		String priceAdd = request.getParameter("priceAdd");
 		String start = request.getParameter("startDateAdd");
 		String duetime = request.getParameter("duetimeAdd");
 		String address = request.getParameter("addressAdd");
 		String content = request.getParameter("editor");
+		
+		Tour tour = null;
+		if (isValidPrice(priceAdd))
+			tour = new Tour( tourName, "", content, start, duetime, Double.parseDouble(priceAdd), address, "active");
+		else 
+			tour = new Tour( tourName, "", content, start, duetime, 0, address, "active");
+		
+		List<String> messageErrors = validateTour(tour);
 
 		Part filePart = request.getPart("file");
-		String fileName = getFileName(filePart);
-		try (InputStream fileContent = filePart.getInputStream();) {
-			File uploads = new File(getServletContext().getRealPath("/resources/images"));
-			if (!uploads.exists()) {
-				uploads.mkdir();
-			}
+		String fileName = null;
+		if(filePart == null || filePart.getSize() == 0) {
+			messageErrors.add("Please select a file to upload.");
+		} else {
+			fileName = getFileName(filePart);
+			try (InputStream fileContent = filePart.getInputStream();) {
+				File uploads = new File(getServletContext().getRealPath("/resources/images"));
+				if (!uploads.exists()) {
+					uploads.mkdir();
+				}
 
-			File file = new File(uploads, fileName);
-			Files.copy(fileContent, file.toPath(), StandardCopyOption.REPLACE_EXISTING);
-			Tour tour = new Tour(tourName, fileName, content, start, duetime, priceAdd, address, "active");
-			if (tour != null) {
-				getTourDAO().addTour(tour);
-				listTours(request, response);
-			}
+				File file = new File(uploads, fileName);
+				Files.copy(fileContent, file.toPath(), StandardCopyOption.REPLACE_EXISTING);
 
-		} catch (Exception e) {
-			e.printStackTrace();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		if (messageErrors.size() != 0) {
+			request.setAttribute("messagesError", messageErrors); // send message fail to jsp
+			listTours(request, response); // return customer page
+		} else {
+			tour.setImage(fileName);
+			getTourDAO().addTour(tour);
+			listTours(request, response);
 		}
 	}
 
