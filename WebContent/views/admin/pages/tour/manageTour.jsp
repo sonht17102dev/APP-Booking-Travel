@@ -18,40 +18,34 @@
                 <h1 class="mt-4">List Tour Management</h1>
                 <div class="card mb-4">
                     <div class="card-header">
-						<%-- <c:choose>
-							<c:when test='${messagesError.equals("Delete success")}'>
-								<div class="alert alert-success">
-									<strong>${messagesError}</strong>
-								</div>
-							</c:when>
-							<c:when test='${messagesError != null}'>
-								<div class="alert alert-danger">
-									<c:forEach var="tempMess" items="${messagesError}">
-										<strong>${tempMess }</strong><br>
-									</c:forEach>
-								</div>
-							</c:when>
-							<c:otherwise>
-								
-							</c:otherwise>
-						</c:choose> --%>
-						<c:choose>
-							<c:when test='${messagesError.equals("success")}'>
-								<div class="alert alert-success">
-									<strong>Success!</strong>
-								</div>
-							</c:when>
-							<c:when test='${messagesError != null}'>
-								<div class="alert alert-danger">
-									<c:forEach var="tempMess" items="${messagesError}">
-										<strong>${tempMess }</strong><br>
-									</c:forEach>
-								</div>
-							</c:when>
-							<c:otherwise>
-								
-							</c:otherwise>
-						</c:choose>
+						<c:if test='${messagesSuccess != null}'>
+							<c:choose>
+								<c:when test='${messagesSuccess.equals("ADD")}'>
+									<div class="alert alert-success">
+									<strong>Add new Tour Success!</strong>
+									</div>
+								</c:when>
+								<c:when test='${messagesSuccess.equals("UPDATE")}'>
+									<div class="alert alert-success">
+									<strong>Update Tour Success!</strong>
+									</div>
+								</c:when>
+								<c:when test='${messagesSuccess.equals("DELETE")}'>
+									<div class="alert alert-success">
+									<strong>Delete Tour Success!</strong>
+									</div>
+								</c:when>
+							
+							</c:choose>
+						</c:if>
+						<c:if test='${messagesError != null}'>
+							<div class="alert alert-danger">
+								<c:forEach var="tempMess" items="${messagesError}">
+									<strong>${tempMess }</strong><br>
+								</c:forEach>
+							</div>
+						</c:if>
+						
 						<button type="button" class="btn btn-success "
 							data-bs-toggle="modal" data-bs-target="#modalAddTour">
 							Add new</button>
@@ -173,6 +167,8 @@
 		//edit.setData(content.substring(3, content.length - 6));
 		edit.setData(content);
 	})	 */
+	
+
 	function handlerDetailButton(id) {
 		event.preventDefault();
 		fetch("/PRJ321x_Project1_BookingTravel/admin/tour?commandTour=LOAD&tourId=" + parseInt(id))

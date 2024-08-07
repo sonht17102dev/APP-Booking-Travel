@@ -110,48 +110,6 @@ public class BaseController extends HttpServlet {
 
 		return results;
 	}
-//	public static Map<Boolean, String> validateTripDates(String startDateStr, String endDateStr) {
-//		Map<Boolean, String> map = new HashMap<Boolean, String>();
-//
-//		if (startDateStr == null || !map.containsValue("Start date cannot be empty.")) {
-//    		map.put(false, "Start date cannot be empty.");
-//        }
-//
-//        if (endDateStr == null || !map.containsValue("End date cannot be empty.")) {
-//    		map.put(false, "End date cannot be empty.");
-//        }
-//        LocalDate startDate = null;
-//        LocalDate endDate = null;
-//        LocalDate currentDate = LocalDate.now();
-//
-//        try {
-//            startDate = LocalDate.parse(startDateStr, DATE_FORMATTER);
-//        } catch (DateTimeParseException e) {
-////            System.out.println("Invalid start date format. Please use yyyy-MM-dd.");
-////            return false;
-//        	if (!map.containsValue("Invalid start date format. Please use yyyy-MM-dd."))
-//        		map.put(false, "Invalid start date format. Please use yyyy-MM-dd.");
-//        }
-//
-//        try {
-//            endDate = LocalDate.parse(endDateStr, DATE_FORMATTER);
-//        } catch (DateTimeParseException e) {
-////            System.out.println("Invalid end date format. Please use yyyy-MM-dd.");
-////            return false;
-//        	if (!map.containsValue("Invalid start date format. Please use yyyy-MM-dd."))
-//        		map.put(false, "Invalid start date format. Please use yyyy-MM-dd.");
-//        }
-//        
-//        if (startDate != null && startDate.isBefore(currentDate) && !map.containsValue("Start date must be after the current date.")){
-//        		map.put(false, "Start date must be after the current date.");
-//        }
-//
-//        if (endDate != null && endDate.isBefore(startDate) && !map.containsValue("End date must be after the start date.")) {
-//        		map.put(false, "End date must be after the start date.");
-//        }
-//
-//        return map;
-//    }
 
 	public List<String> validateUser(User user, String command) {
 		List<String> messagesError = new ArrayList<>();

@@ -147,7 +147,7 @@ public class CustomerController extends BaseController {
 		if (id != null) {
 			getUserDAO().deleteUser(id); 
 			// send message to customer page
-			request.setAttribute("messagesError", "success");
+			request.setAttribute("messages", "success");
 			// return to customer page
 			listUsers(request, response); // return customer page
 		} else {

@@ -44,7 +44,9 @@
 					</div>
 					<div class="col-6">
 						<label for="fileUp" class="col-form-label">Description photo:</label> 
-						<input type="file" class="form-control" id="fileUp" name="fileUp"  value="${tour.image}">
+						<input type="file" class="form-control" id="fileUp${tour.id}" name="fileUp${tour.id}" onchange="onChangeHandler()" >
+						<label for="fileName" class="col-form-label">File name:</label> 
+						<input type="text" class="form-control" name = "filename${tour.id}" id="filename${tour.id}" value="${tour.image}" readonly>
 					</div>
 				</div>
 				<div class="row">
@@ -68,8 +70,15 @@
   </div>
 </div>
 <!-- Modal Update-->
+
 <script>
-	
+	function onChangeHandler() {
+		var filename  = document.querySelector("#filename"+ ${tour.id});
+		var fileInput = document.getElementById("fileUp"+${tour.id}); 
+		var filenameUpLoad = fileInput.files[0].name;
+		filename.value = filenameUpLoad;
+	}
+  
 	ClassicEditor.create(document.querySelector('#editorUp' + ${tour.id}))
 	.then(edit => {
 		const content = document.querySelector('#editorUp' + ${tour.id}).value;
