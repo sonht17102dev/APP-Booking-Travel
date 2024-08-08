@@ -1,4 +1,4 @@
-package com.sonht.controllerAdmin;
+package com.sonht.controller.admin;
 
 import java.io.File;
 import java.io.IOException;
@@ -110,9 +110,6 @@ public class TourController extends BaseController {
 		String duetime = request.getParameter("duetimeUp");
 		String address = request.getParameter("addressUp");
 		String content = request.getParameter("editorUp" + id);
-		String fileNameInput = request.getParameter("filename" + id);
-		System.out.println(fileNameInput);
-		
 		
 		Tour tour = null;
 		if (isValidPrice(priceUp))
@@ -149,7 +146,7 @@ public class TourController extends BaseController {
 			tour.setImage(fileName);
 			// send message to tour page
 			request.setAttribute("messagesSuccess", "UPDATE");
-//			getTourDAO().updateTour(id, tour);
+			getTourDAO().updateTour(id, tour);
 			listTours(request, response);
 		}
 	}
@@ -163,6 +160,7 @@ public class TourController extends BaseController {
 		String address = request.getParameter("addressAdd");
 		String content = request.getParameter("editor");
 		String photoName = request.getParameter("filename");
+		
 		Tour tour = null;
 		if (isValidPrice(priceAdd))
 			tour = new Tour( tourName, photoName, content, start, duetime, Double.parseDouble(priceAdd), address, "active");
@@ -197,7 +195,7 @@ public class TourController extends BaseController {
 			tour.setImage(fileName);
 			// send message to tour page
 			request.setAttribute("messagesSuccess", "ADD");
-//			getTourDAO().addTour(tour);
+			getTourDAO().addTour(tour);
 			listTours(request, response);
 		}
 	}

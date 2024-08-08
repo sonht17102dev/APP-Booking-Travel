@@ -21,23 +21,25 @@
             </c:if>
             <p data-scrollax="properties: { translateY: '30%', opacity: 1.6 }">Find great places to stay, eat, shop, or visit from local experts</p>
             <div class="block-17 my-4">
-              <form action="" method="post" class="d-block d-flex">
+              <form action="${pageContext.servletContext.contextPath}/search" method="post" class="d-block d-flex">
                 <div class="fields d-block d-flex">
                   <div class="textfield-search one-third">
-                  	<input type="text" class="form-control" placeholder="Ex: food, service, hotel">
+                  	<input type="text" class="form-control" placeholder="Ex: food, service, hotel" name="searchText" id="searchText">
                   </div>
                 </div>
+                <input type="hidden" name="action" value="keyword">
                 <input type="submit" class="search-submit btn btn-primary" value="Search">  
               </form>
             </div>
             <p>Or start time</p>
             <div class="block-17 my-4">
-              <form action="" method="post" class="d-block d-flex">
+              <form action="${pageContext.servletContext.contextPath}/search" method="post" class="d-block d-flex">
                 <div class="fields d-block d-flex">
                   <div class="textfield-search one-third">
-                  	<input type="date" class="form-control" >
+                  	<input type="date" class="form-control" name="date">
                   </div>
                 </div>
+                <input type="hidden" name="action" value="searchDate">
                 <input type="submit" class="search-submit btn btn-primary" value="Search">  
               </form>
             </div>
@@ -128,15 +130,16 @@
  	<!--  top tour start -->
     <section class="ftco-section bg-light">
     	<div class="container">
-				<div class="row justify-content-start mb-5 pb-3">
-          <div class="col-md-7 heading-section ftco-animate">
-          	<span class="subheading">Special Offers</span>
-            <h2 class="mb-4"><strong>Top</strong> Tour Packages</h2>
-          </div>
-        </div>    		
+			<div class="row justify-content-start mb-5 pb-3">
+	           <div class="col-md-7 heading-section ftco-animate">
+	          	  <span class="subheading">Special Offers</span>
+	              <h2 class="mb-4"><strong>Top</strong> Tour Packages</h2>
+	           </div>
+      		</div>    		
     	</div>
     	<div class="container-fluid">
     		<div class="row">
+    		
     		<c:forEach var="tour" items="${list_tours}">
     			<div class="col-sm col-md-6 col-lg ftco-animate">
     				<div class="destination">
@@ -174,12 +177,13 @@
     				</div>
     			</div>
     		</c:forEach>
+    		
     		</div>
     	</div>
     </section>
  	<!--  top tour end -->
  
- 
+
 	
 	<!-- Footer start -->   
 	<%@ include file="/views/client/layouts/footer.jsp" %> 

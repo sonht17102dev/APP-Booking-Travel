@@ -8,9 +8,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.sonht.controllerAdmin.BaseController;
+import com.sonht.controller.admin.BaseController;
 import com.sonht.dto.BookingDTO;
-import com.sonht.model.Booking;
 
 /**
  * Servlet implementation class BookingController

@@ -1,4 +1,4 @@
-package com.sonht.controllerAdmin;
+package com.sonht.controller.admin;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -12,6 +12,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 
 import com.sonht.dao.BookingDAO;
+import com.sonht.dao.PostDAO;
 import com.sonht.dao.TourDAO;
 import com.sonht.dao.UserDAO;
 import com.sonht.model.Tour;
@@ -38,6 +39,9 @@ public class BaseController extends HttpServlet {
 	public BookingDAO getBookingDAO() {
 		return new BookingDAO();
 	}
+	public PostDAO getPostDAO() {
+		return new PostDAO();
+	}
 
 	public List<String> validateTour(Tour tour) {
 		List<String> messagesError = new ArrayList<String>();
@@ -62,7 +66,7 @@ public class BaseController extends HttpServlet {
 		return messagesError;
 	}
 
-	public static List<String> validateTripDates(String startDateStr, String endDateStr) {
+	public List<String> validateTripDates(String startDateStr, String endDateStr) {
 		List<String> results = new ArrayList<String>();
 		
 		if ((startDateStr == null || startDateStr.trim().isEmpty()) && (endDateStr == null || endDateStr.trim().isEmpty())) {
@@ -109,6 +113,48 @@ public class BaseController extends HttpServlet {
 		}
 
 		return results;
+	}
+	
+	public boolean isValidStartDate(String startDate) {
+		if (startDate == null || startDate.trim().isEmpty()) {
+			return false;
+		}
+		LocalDate startDateLocal;
+		LocalDate currentDate = LocalDate.now();
+		try {
+			startDateLocal = LocalDate.parse(startDate, DATE_FORMATTER);
+		} catch (DateTimeParseException e) {
+			return false;
+		}
+		if (startDateLocal.isBefore(currentDate)) {
+			return false;
+		}
+		
+		
+		return true;
+	}
+	public boolean isValidDueTime(String startDate, String duetime) {
+		if (duetime == null || duetime.trim().isEmpty()) {
+			return false;
+		}
+		LocalDate endDateLocal;
+		LocalDate startDateLocal;
+		try {
+			startDateLocal = LocalDate.parse(startDate, DATE_FORMATTER);
+		} catch (DateTimeParseException e) {
+			return false;
+		}
+		try {
+			endDateLocal = LocalDate.parse(duetime, DATE_FORMATTER);
+		} catch (DateTimeParseException e) {
+			return false;
+		}
+		if (endDateLocal.isBefore(startDateLocal) || endDateLocal.equals(startDateLocal)) {
+			return false;
+		}
+		
+		
+		return true;
 	}
 
 	public List<String> validateUser(User user, String command) {

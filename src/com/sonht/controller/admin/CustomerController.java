@@ -1,4 +1,4 @@
-package com.sonht.controllerAdmin;
+package com.sonht.controller.admin;
 
 import java.io.IOException;
 import java.util.List;
@@ -62,7 +62,7 @@ public class CustomerController extends BaseController {
 		if (id != null) {
 			getUserDAO().lockUser(id); 
 			// send message to customer page
-			request.setAttribute("messagesError", "success");
+			request.setAttribute("messagesSuccess", "LOCK");
 			// return to customer page
 			listUsers(request, response); // return customer page
 		} else {
@@ -80,7 +80,7 @@ public class CustomerController extends BaseController {
 		if (id != null) {
 			getUserDAO().openUser(id); 
 			// send message to customer page
-			request.setAttribute("messagesError", "success");
+			request.setAttribute("messagesSuccess", "OPEN");
 			// return to customer page
 			listUsers(request, response); // return customer page
 		} else {
@@ -112,7 +112,7 @@ public class CustomerController extends BaseController {
 
 		} else {
 			getUserDAO().updateUser(user); // update User into database
-			request.setAttribute("messagesError", "success"); // send message success to jsp
+			request.setAttribute("messagesSuccess", "UPDATE"); // send message success to jsp
 			listUsers(request, response); // return customer page
 		}
 	}
@@ -130,7 +130,7 @@ public class CustomerController extends BaseController {
 
 		} else {
 			getUserDAO().addUser(user); // add new User into database
-			request.setAttribute("messagesError", "success"); // send message success to jsp
+			request.setAttribute("messagesSuccess", "ADD"); // send message success to jsp
 			listUsers(request, response); // return customer page
 		}
 	}
@@ -147,7 +147,7 @@ public class CustomerController extends BaseController {
 		if (id != null) {
 			getUserDAO().deleteUser(id); 
 			// send message to customer page
-			request.setAttribute("messages", "success");
+			request.setAttribute("messagesSuccess", "DELETE");
 			// return to customer page
 			listUsers(request, response); // return customer page
 		} else {

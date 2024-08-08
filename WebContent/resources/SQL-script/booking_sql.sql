@@ -45,7 +45,18 @@ CREATE TABLE booking (
     created_date varchar(20) NOT NULL,
     status VARCHAR(20) NOT NULL
 );
-
+--
+-- Table structure for table `booking`
+--
+DROP TABLE IF EXISTS `post`;
+CREATE TABLE post (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    image VARCHAR(255) NOT NULL,
+    description text,
+    created_date varchar(20) NOT NULL,
+    status VARCHAR(20) NOT NULL
+);
 
 --
 -- Dumping data for table `user`

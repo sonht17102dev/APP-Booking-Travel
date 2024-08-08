@@ -2,17 +2,13 @@ package com.sonht.controller.client;
 
 import java.io.IOException;
 
-import javax.imageio.plugins.tiff.BaselineTIFFTagSet;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.apache.taglibs.standard.tag.common.sql.DataSourceUtil;
-
-import com.sonht.controllerAdmin.BaseController;
+import com.sonht.controller.admin.BaseController;
 import com.sonht.model.User;
 
 @WebServlet("/login")
@@ -57,12 +53,14 @@ public class LoginController extends BaseController {
 				if (user.getRoleId() == 0) {
 					session.setAttribute("adminLogin", user);
 					session.setAttribute("message", "Login Success");
+					session.setAttribute("role", "admin");
 					session.setMaxInactiveInterval(60);
 					request.getRequestDispatcher(adminPath).forward(request, response);
 				} else {
 					session.setAttribute("userLogin", user);
 					session.setAttribute("message", "Login Success");
 					session.setMaxInactiveInterval(60);
+					session.setAttribute("role", "user");
 					request.getRequestDispatcher("/index.jsp").forward(request, response);
 				}
 			}

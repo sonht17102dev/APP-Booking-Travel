@@ -1,4 +1,4 @@
-package com.sonht.controllerAdmin;
+package com.sonht.controller.admin;
 
 import java.io.IOException;
 import javax.servlet.ServletException;

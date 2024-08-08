@@ -153,4 +153,49 @@ public class TourDAO {
 			close(connection, null, preStatement, null);
 		}
 	}
+
+	public List<Tour> searchByKeyWord(String keyword) throws SQLException {
+		List<Tour> tours = new ArrayList<Tour>();
+		try {
+			connection = new DatabaseContext().getConnection();
+			String sql = "select * from tour where status='active' and name like '%"+ keyword +"%' ";
+			statement = connection.createStatement();
+			rs = statement.executeQuery(sql);
+			while (rs.next()) {
+				// retrieve data from result set row and create new student object
+				Tour tour = new Tour(rs.getInt("id"), rs.getString("name"), rs.getString("image"),
+						rs.getString("description"), rs.getString("start_date"), rs.getString("duetime"),
+						rs.getDouble("price"), rs.getString("address"), rs.getString("status"));
+
+				// add it to the students
+				tours.add(tour);
+			}
+			return tours;
+		} finally {
+			close(connection, statement, null, rs);
+		}
+	}
+
+	public List<Tour> searchByDate(String date) throws SQLException {
+		List<Tour> tours = new ArrayList<Tour>();
+		try {
+			connection = new DatabaseContext().getConnection();
+			String sql = "SELECT * FROM web_booking_travel.tour WHERE status='active'"
+					+ " and STR_TO_DATE(start_date, '%Y-%m-%d') >= '"+date+"'; ";
+			statement = connection.createStatement();
+			rs = statement.executeQuery(sql);
+			while (rs.next()) {
+				// retrieve data from result set row and create new student object
+				Tour tour = new Tour(rs.getInt("id"), rs.getString("name"), rs.getString("image"),
+						rs.getString("description"), rs.getString("start_date"), rs.getString("duetime"),
+						rs.getDouble("price"), rs.getString("address"), rs.getString("status"));
+
+				// add it to the students
+				tours.add(tour);
+			}
+			return tours;
+		} finally {
+			close(connection, statement, null, rs);
+		}
+	}
 }

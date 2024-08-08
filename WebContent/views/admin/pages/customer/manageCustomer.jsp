@@ -18,23 +18,42 @@
                 <h1 class="mt-4">List Customer Management</h1>
                 <div class="card mb-4">
                     <div class="card-header">
-						<c:choose>
-							<c:when test='${messagesError.equals("success")}'>
-								<div class="alert alert-success">
-									<strong>Success!</strong>
-								</div>
-							</c:when>
-							<c:when test='${messagesError != null}'>
-								<div class="alert alert-danger">
-									<c:forEach var="tempMess" items="${messagesError}">
-										<strong>${tempMess }</strong><br>
-									</c:forEach>
-								</div>
-							</c:when>
-							<c:otherwise>
-								
-							</c:otherwise>
-						</c:choose>
+						<c:if test='${messagesSuccess != null}'>
+							<c:choose>
+								<c:when test='${messagesSuccess.equals("ADD")}'>
+									<div class="alert alert-success">
+									<strong>Add New User Success!</strong>
+									</div>
+								</c:when>
+								<c:when test='${messagesSuccess.equals("UPDATE")}'>
+									<div class="alert alert-success">
+									<strong>Update User Success!</strong>
+									</div>
+								</c:when>
+								<c:when test='${messagesSuccess.equals("DELETE")}'>
+									<div class="alert alert-success">
+									<strong>Delete User Success!</strong>
+									</div>
+								</c:when>
+								<c:when test='${messagesSuccess.equals("LOCK")}'>
+									<div class="alert alert-success">
+									<strong>Lock User Success!</strong>
+									</div>
+								</c:when>
+								<c:when test='${messagesSuccess.equals("OPEN")}'>
+									<div class="alert alert-success">
+									<strong>Open User Success!</strong>
+									</div>
+								</c:when>
+							</c:choose>
+						</c:if>
+						<c:if test='${messagesError != null}'>
+							<div class="alert alert-danger">
+								<c:forEach var="tempMess" items="${messagesError}">
+									<strong>${tempMess }</strong><br>
+								</c:forEach>
+							</div>
+						</c:if>
 						<button type="button" class="btn btn-success "
 							data-bs-toggle="modal" data-bs-target="#modalAdd">
 							Add new</button>

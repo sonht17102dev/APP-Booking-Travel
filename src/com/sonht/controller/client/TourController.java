@@ -8,7 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.sonht.controllerAdmin.BaseController;
+import com.sonht.controller.admin.BaseController;
 import com.sonht.model.Booking;
 import com.sonht.model.Tour;
 

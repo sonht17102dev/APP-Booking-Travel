@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.sonht.controllerAdmin.BaseController;
+import com.sonht.controller.admin.BaseController;
 import com.sonht.model.User;
 
 /**

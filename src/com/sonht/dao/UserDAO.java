@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.sonht.config.DatabaseContext;
-import com.sonht.controllerAdmin.BaseController;
+import com.sonht.controller.admin.BaseController;
 import com.sonht.model.User;
 
 public class UserDAO {
