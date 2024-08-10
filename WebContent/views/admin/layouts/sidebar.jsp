@@ -17,10 +17,6 @@
                   <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
                   News Management
               </a>
-              <a class="nav-link" href="${pageContext.servletContext.contextPath}/admin/employee">
-                  <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
-                  Employee Management
-              </a>
               <a class="nav-link" href="${pageContext.servletContext.contextPath}/admin/customer">
                   <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
                   Customer Management

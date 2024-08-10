@@ -154,3 +154,45 @@ INSERT INTO booking (user_id, tour_id, adults_quantity, children_quantity, creat
 (2, 3, 2, 1, '2024-03-22', 'active'),
 (3, 2, 3,2,'2024-04-07', 'active'),
 (3, 3, 1,1, '2024-07-27', 'active');
+
+--
+-- Dumping data for table `post`
+-- add data post samples
+INSERT INTO post (name, image, description, created_date, status) VALUES
+('3 Days In Sapa Itinerary: The ULTIMATE Guide (2024)', 'Sapa.jpg', 
+'<h2>3 Days In Sapa Itinerary: The ULTIMATE Guide (2024)</h2><p>Posted on 
+<a href="https://www.backpackerswanderlust.com/3-days-in-sapa-itinerary-backpacking/">May 14, 2024</a> 
+by <a href="https://www.backpackerswanderlust.com/author/tashyie/">Tasha Amy</a></p><p><i>Find out the ideal
+ 3 days in Sapa itinerary for an epic time in Northern Vietnam. 
+ Let\'s get into the best things to do here, restaurants you have to try,
+ where to stay including homestays, and more for your Sapa adventure!</i></p>
+ <p>Backpacking Sapa is a highlight when you are in Northern Vietnam. 
+ This spot is absolutely incredible with beautiful nature and friendly locals that will result in a busy
+ 3 days in Sapa itinerary.</p><p>Think of bright green rice paddies, mountainous landscapes, and witnessing life
+ in rural Vietnam. This place is absolutely gorgeous and honestly quite different from other popular towns and cities
+ you may visit, but how do you make the most out of your stay?</p>
+ <p>Luckily enough I have traveled Vietnam from North to South discovering the best places worth checking out, 
+ including right here in Sapa. And from this experience, I will let you know my top tips for visiting and
+ what is actually worth your time!</p><p>So let\'s get into the details of this 3 day Sapa itinerary. 
+ From where to stay, where to eat, and what to do. Whether you want to check out some incredible waterfalls, 
+ and stunning views, make friends with the local animals, or even hike Fansipan Mountain known as 
+ the roof of Indochina.</p>', '2024-08-10', 'active'),
+ ('The Ultimate Guide to Experiencing Da Nang, Vietnam', 'Da-Nang.jpg', 
+'<h2>The Ultimate Guide to Experiencing Da Nang, Vietnam</h2><p><i>By</i> Josh Hewitt February 8, 2024 (4)
+</p><p>&nbsp;</p><p>Located in central Vietnam, the city of&nbsp;Da Nang is a beautiful and rapidly growing city
+ that is becoming one of Southeast Asia\'s top tourist destinations. Renowned for its breathtaking landscape, 
+ rich culture, and incredible cuisine, it is a destination that should be on every traveler\'s list. 
+ In this&nbsp; Da Nang, Vietnam Guide, I will touch on some of the many things that make this city incredible.</p>
+ <p>From the city\'s breathtaking beaches to the incredible marble mountains that backdrop this gorgeous city, 
+ Da Nang is a city that will take your breath away with its beauty. If that isn\'t enough to make you want to visit,
+ the city\'s many incredible beaches are great for unwinding and and enjoying the weather. 
+ Not to be outdone, the incredibly diverse and delicious cuisine in&nbsp; Da Nang is renowned the world over. 
+ These are just some of the many reasons to visit this amazing city.</p><p>&nbsp;</p><p>
+ <img src=\"https://wanderlustphotosblog.com/wp-content/uploads/2024/02/Da-Nang-Vietnam-Guide-2422.jpg\" 
+ alt=\"Marble Mountains in Da Nang, Vietnam\"></p><h4>An All You Need Da Nang, Vietnam Guide</h4>
+ <p>In this guide, I am going to provide you will all of the information that you need to plan a successful trip 
+ to see&nbsp; Da Nang. I cover the best times to visit and the best ways to get there so that you can maximize 
+ what you can see and do on your trip.</p><p>I also outline all of the top things to see and do while you are there,
+ as well as the best places to stay and eat. With the information in my&nbsp; Da Nang, Vietnam guide in hand, 
+ you can be confident that your trip to see one of Vietnam\'s most incredible cities will be one that you remember 
+ for the rest of your life.</p>', '2024-08-11', 'active');

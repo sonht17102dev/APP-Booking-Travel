@@ -88,7 +88,7 @@ public class TourController extends BaseController {
 			throws SQLException, ServletException, IOException {
 		String id = request.getParameter("tourId");
 		if (id != null) {
-//			getTourDAO().deleteTour(id);
+			getTourDAO().deleteTour(id);
 			// send message to tour page
 			request.setAttribute("messagesSuccess", "DELETE");
 			// return to tour page
@@ -198,15 +198,5 @@ public class TourController extends BaseController {
 			getTourDAO().addTour(tour);
 			listTours(request, response);
 		}
-	}
-
-	private String getFileName(Part part) {
-		String contentDisposition = part.getHeader("content-disposition");
-		for (String cd : contentDisposition.split(";")) {
-			if (cd.trim().startsWith("filename")) {
-				return cd.substring(cd.indexOf('=') + 1).trim().replace("\"", "");
-			}
-		}
-		return null;
 	}
 }

@@ -10,11 +10,13 @@ import java.util.Map;
 
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
+import javax.servlet.http.Part;
 
 import com.sonht.dao.BookingDAO;
 import com.sonht.dao.PostDAO;
 import com.sonht.dao.TourDAO;
 import com.sonht.dao.UserDAO;
+import com.sonht.model.Post;
 import com.sonht.model.Tour;
 import com.sonht.model.User;
 
@@ -42,7 +44,24 @@ public class BaseController extends HttpServlet {
 	public PostDAO getPostDAO() {
 		return new PostDAO();
 	}
-
+	
+	public List<String> validatePost(Post post) {
+		
+		List<String> errors = new ArrayList<String>();
+		
+		if (!isValidFullname(post.getName())) {
+			errors.add("Title post is required!");
+		}
+		
+		if (!isValidStartDate(post.getCreatedDate())) {
+			errors.add("Post creation date is required or cannot be before the current date!");
+		}
+		if (!isValidDescription(post.getDescription())) {
+			errors.add("Description is required!");
+		}
+		
+		return errors;
+	}
 	public List<String> validateTour(Tour tour) {
 		List<String> messagesError = new ArrayList<String>();
 		List<String> errors = validateTripDates(tour.getStartDate(), tour.getDuetime());
@@ -216,5 +235,13 @@ public class BaseController extends HttpServlet {
 	public boolean isValidPassword(String password) {
 		return password != null && !password.trim().isEmpty();
 	}
-
+	public String getFileName(Part part) {
+		String contentDisposition = part.getHeader("content-disposition");
+		for (String cd : contentDisposition.split(";")) {
+			if (cd.trim().startsWith("filename")) {
+				return cd.substring(cd.indexOf('=') + 1).trim().replace("\"", "");
+			}
+		}
+		return null;
+	}
 }

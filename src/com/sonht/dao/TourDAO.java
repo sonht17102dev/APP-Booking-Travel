@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.sonht.config.DatabaseContext;
+import com.sonht.model.Post;
 import com.sonht.model.Tour;
 import com.sonht.model.User;
 
@@ -198,4 +199,5 @@ public class TourDAO {
 			close(connection, statement, null, rs);
 		}
 	}
+
 }

@@ -21,7 +21,7 @@ public class PostDAO {
 		List<Post> list = new ArrayList<Post>();
 		try {
 			connection = new DatabaseContext().getConnection();
-			String sql = "select * from post ";
+			String sql = "select * from post where status='active' ";
 			statement = connection.createStatement();
 			rs = statement.executeQuery(sql);
 			while (rs.next()) {
@@ -86,6 +86,56 @@ public class PostDAO {
 		} finally {
 			close(connection, null, preStatement, rs);
 		}
+	}
+
+	public void addPost(Post post) throws SQLException {
+		try {
+			connection = new DatabaseContext().getConnection();
+			String sql = "insert into post "
+					+ " (name, image, description, created_date, status) "
+					+ "VALUES (?, ?, ?, ?, ?) ";
+			preStatement = connection.prepareStatement(sql);
+			preStatement.setString(1, post.getName());
+			preStatement.setString(2, post.getImage());
+			preStatement.setString(3, post.getDescription());
+			preStatement.setString(4, post.getCreatedDate());
+			preStatement.setString(5, post.getStatus());
+			preStatement.execute();
+		} finally {
+			close(connection, null, preStatement, null);
+		}
+
+	}
+	
+	public void deletePost(String id) throws SQLException {
+		try {
+			connection = new DatabaseContext().getConnection();
+			String sql = "update post set status=? where id=? ";
+			preStatement = connection.prepareStatement(sql);
+			preStatement.setString(1, "inactive");
+			preStatement.setInt(2, Integer.parseInt(id));
+			preStatement.execute();
+
+		} finally {
+			close(connection, null, preStatement, null);
+		}
+	}
+
+	public void updatePost(Post post) throws SQLException {
+		try {
+			connection = new DatabaseContext().getConnection();
+			String sql = "update post set name=?, image=?, description=?, created_date=? where id=? ";
+			preStatement = connection.prepareStatement(sql);
+			preStatement.setString(1, post.getName());
+			preStatement.setString(2, post.getImage());
+			preStatement.setString(3, post.getDescription());
+			preStatement.setString(4, post.getCreatedDate());
+			preStatement.setInt(5, post.getId());
+			preStatement.execute();
+		} finally {
+			close(connection, null, preStatement, null);
+		}
+
 	}
 	
 }

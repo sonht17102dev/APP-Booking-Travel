@@ -22,17 +22,17 @@
 							<c:choose>
 								<c:when test='${messagesSuccess.equals("ADD")}'>
 									<div class="alert alert-success">
-									<strong>Add new Tour Success!</strong>
+									<strong>Add new Post Success!</strong>
 									</div>
 								</c:when>
 								<c:when test='${messagesSuccess.equals("UPDATE")}'>
 									<div class="alert alert-success">
-									<strong>Update Tour Success!</strong>
+									<strong>Update Post Success!</strong>
 									</div>
 								</c:when>
 								<c:when test='${messagesSuccess.equals("DELETE")}'>
 									<div class="alert alert-success">
-									<strong>Delete Tour Success!</strong>
+									<strong>Delete Post Success!</strong>
 									</div>
 								</c:when>
 							
@@ -56,14 +56,10 @@
                     <div class="card-body">
                         <table id="datatablesSimple">
                             <thead>
-                            <tr style="background-color: gray !important;">
-                                <th>Tour Name</th>
-                                <th>Price (USD)</th>
-                                <th>Image</th>
-                                <th>Describe</th>
-                                <th>Start date</th>
-                                <th>End date</th>
-                                <th>Address</th>
+                            <tr>
+                                <th>Title</th>
+                                <th>Image Description</th>
+                                <th>Detailed description</th>
                                 <th>Action</th>
                             </tr>
                             </thead>
@@ -72,22 +68,16 @@
                             <c:forEach var="post" items="${list_posts}">
                                 <tr>
                                     <td>${post.name}</td>
-                                    <td>${post.price}</td>
-                                    <td style="width:200px"><img style="width:100%;" src="${pageContext.servletContext.contextPath}/resources/images/${tour.image}"></td>
-                                    <!-- <td><a href="detail">Xem chi tiết</a></td> -->
+                                    <td style="width:200px"><img style="width:100%;" 
+                                    src="${pageContext.servletContext.contextPath}/resources/images/${post.image}"></td>
                                     <td>
                                     <a href="" data-bs-toggle="modal" data-bs-target="#modalDetail"
                                     	onclick="handlerDetailButton(${post.id})">View more</a>
                                     </td>
-                                    <td>${post.startDate}</td>
-                                    <td>${post.duetime}</td>
-                                    <td>${post.address}</td>
                                     <td>
 	                                    <button type="button" class="btn btn-primary update-btn" data-bs-toggle="modal"
 	                                        data-bs-target="#modalUpdate${post.id}" >
 	                                        Update</button>
-	                                   <!--  <button type="button" class="btn btn-warning " data-bs-toggle="modal"
-	                                        data-bs-target="#modalDetail">Detail</button> -->
                                         <button type="button" class="btn btn-danger " data-bs-toggle="modal"
 	                                        data-bs-target="#modalDelete" onclick="handlerDeleteButton(${post.id})">Delete</button>
                                     </td>
@@ -102,7 +92,7 @@
 			                      <div class="modal-dialog modal-dialog-scrollable modal-xl">
 			                        <div class="modal-content">
 			                          <div class="modal-header">
-			                            <h5 class="modal-title title-delete" id="exampleModalLabel">Detailed description of the trip</h5>
+			                            <h5 class="modal-title title-delete" id="exampleModalLabel">Detailed description of the post</h5>
 			                            <button type="button" class="btn-close" data-bs-dismiss="modal"
 			                                    aria-label="Close"></button>
 			                          </div>
@@ -133,14 +123,14 @@
 			                          	<p id="content-delete"></p>
 			                            <form  method="post" 
 			                            	action="${pageContext.servletContext.contextPath}/admin/post">
-			                              <input type="hidden" class="form-control" name="tourId" id="postIdDelete" value="${post.id}">
-			                              <input type="hidden" class="form-control" name="commandTour" value="DELETE">
+			                              <input type="hidden" class="form-control" name="postId" id="postIdDelete" value="${post.id}">
+			                              <input type="hidden" class="form-control" name="commandPost" value="DELETE">
 			                              <div class="modal-footer" style="margin-top: 20px">
 			                                <button type="button" class="btn btn-secondary"
 			                                        data-bs-dismiss="modal">
 			                                  Close
 			                                </button>
-			                                <button type="submit" class="btn btn-primary">Delete</button>
+			                                <button type="submit" class="btn btn-danger">Delete</button>
 			
 			                              </div>
 			                            </form>
@@ -171,7 +161,7 @@
 
 	function handlerDetailButton(id) {
 		event.preventDefault();
-		fetch("/PRJ321x_Project1_BookingTravel/admin/tour?commandPost=LOAD&postId=" + parseInt(id))
+		fetch("/PRJ321x_Project1_BookingTravel/admin/post?commandPost=LOAD&postId=" + parseInt(id))
 	    .then(response => response.json())
 	    .then(data => {
 			// Display data get from BE to form open
@@ -180,10 +170,10 @@
 	}
 	
 	function handlerDeleteButton(id) {
-		fetch("/PRJ321x_Project1_BookingTravel/admin/tour?commandPost=LOAD&postId=" + parseInt(id))
+		fetch("/PRJ321x_Project1_BookingTravel/admin/post?commandPost=LOAD&postId=" + parseInt(id))
 	    .then(response => response.json())
 	    .then(data => {
-			console.log(data)
+			//console.log(data)
 			// Display data get from BE to form open
 	    	document.getElementById("postIdDelete").value = data.id;
 	    	document.getElementById("content-delete").textContent = data.name + ' will be deleted by the system!';

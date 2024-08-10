@@ -56,7 +56,7 @@
                     <div class="card-body">
                         <table id="datatablesSimple">
                             <thead>
-                            <tr style="background-color: gray !important;">
+                            <tr>
                                 <th>Tour Name</th>
                                 <th>Price (USD)</th>
                                 <th>Image</th>
