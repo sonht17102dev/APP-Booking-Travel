@@ -137,5 +137,36 @@ public class PostDAO {
 		}
 
 	}
+
+	public Post getPostById(int id) throws Exception {
+		Post postById = null;
+		try {
+			// get connection to db
+			connection = new DatabaseContext().getConnection();
+			// create sql to get user by id
+			String sql = "select * from post where id=? and status = 'active' ";
+
+			// create prepare statement
+			preStatement = connection.prepareStatement(sql);
+
+			// set params
+			preStatement.setInt(1, id);
+
+			// excute
+			rs = preStatement.executeQuery();
+
+			// get data save in result set
+			if (rs.next()) {
+				postById = new Post(id, rs.getString("name"), rs.getString("image"), rs.getString("description"),
+						rs.getString("created_date"), rs.getString("status"));
+			} else {
+				throw new Exception("Could not find post id: " + id);
+			}
+
+			return postById;
+		} finally {
+			close(connection, null, preStatement, rs);
+		}
+	}
 	
 }

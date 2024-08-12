@@ -183,7 +183,6 @@
     </section>
  	<!--  top tour end -->
  
-
 	
 	<!-- Footer start -->   
 	<%@ include file="/views/client/layouts/footer.jsp" %> 

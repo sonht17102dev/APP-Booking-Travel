@@ -42,7 +42,7 @@
       <div class="collapse navbar-collapse" id="ftco-nav">
         <ul class="navbar-nav ml-auto">
           <li class="nav-item"><a href="${pageContext.servletContext.contextPath}" class="nav-link">Home</a></li>
-          <li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
+          <li class="nav-item"><a href="${pageContext.servletContext.contextPath}/news" class="nav-link">News</a></li>
           <c:if test='${userLogin == null}'>
 	          <li class="nav-item "><a href="${pageContext.servletContext.contextPath}/login" class="nav-link">Log In</a></li>
 	      </c:if>
