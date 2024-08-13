@@ -13,12 +13,13 @@ import com.sonht.controller.admin.BaseController;
 import com.sonht.model.User;
 
 public class UserDAO {
-	Connection connection = null;
-	Statement statement = null;
-	PreparedStatement preStatement = null;
-	ResultSet rs = null;
-	
+
 	public List<User> getAllUsers() throws SQLException {
+		Connection connection = null;
+		Statement statement = null;
+		PreparedStatement preStatement = null;
+		ResultSet rs = null;
+		
 		List<User> list = new ArrayList<User>();
 		try {
 			connection = new DatabaseContext().getConnection();
@@ -53,6 +54,11 @@ public class UserDAO {
 	}
 	
 	public void addUser(User user) throws Exception {
+		Connection connection = null;
+		Statement statement = null;
+		PreparedStatement preStatement = null;
+		ResultSet rs = null;
+		
 		try {
 			connection = new DatabaseContext().getConnection();
 			
@@ -76,6 +82,11 @@ public class UserDAO {
 	}
 
 	public User getUserById(String userId) throws Exception {
+		Connection connection = null;
+		Statement statement = null;
+		PreparedStatement preStatement = null;
+		ResultSet rs = null;
+		
 		int id;
 		User userById = null;
 		try {
@@ -111,6 +122,11 @@ public class UserDAO {
 	}
 
 	public void updateUser(User user) throws SQLException {
+		Connection connection = null;
+		Statement statement = null;
+		PreparedStatement preStatement = null;
+		ResultSet rs = null;
+		
 		try {
 			connection = new DatabaseContext().getConnection();
 			String sql = "update user "
@@ -133,6 +149,11 @@ public class UserDAO {
 	}
 
 	public void lockUser(String id) throws SQLException {
+		Connection connection = null;
+		Statement statement = null;
+		PreparedStatement preStatement = null;
+		ResultSet rs = null;
+		
 		try {
 			connection = new DatabaseContext().getConnection();
 			int idd = Integer.parseInt(id);
@@ -151,6 +172,11 @@ public class UserDAO {
 	}
 
 	public void openUser(String id) throws SQLException {
+		Connection connection = null;
+		Statement statement = null;
+		PreparedStatement preStatement = null;
+		ResultSet rs = null;
+		
 		try {
 			connection = new DatabaseContext().getConnection();
 			int idd = Integer.parseInt(id);
@@ -170,6 +196,11 @@ public class UserDAO {
 	}
 
 	public void deleteUser(String id) throws SQLException {
+		Connection connection = null;
+		Statement statement = null;
+		PreparedStatement preStatement = null;
+		ResultSet rs = null;
+		
 		try {
 			connection = new DatabaseContext().getConnection();
 			int idd = Integer.parseInt(id);
@@ -185,6 +216,11 @@ public class UserDAO {
 	}
 	
 	public User checkEmailExist(String userMail) throws Exception {
+		Connection connection = null;
+		Statement statement = null;
+		PreparedStatement preStatement = null;
+		ResultSet rs = null;
+		
 		try {
 			String query = "select * from user where email = ?";
 			connection = new DatabaseContext().getConnection();
@@ -204,6 +240,11 @@ public class UserDAO {
 		}
 	}
 	public User checkUsernameExist(String username) throws Exception {
+		Connection connection = null;
+		Statement statement = null;
+		PreparedStatement preStatement = null;
+		ResultSet rs = null;
+		
 		try {
 			String query = "select * from user where username = ?";
 			connection = new DatabaseContext().getConnection();

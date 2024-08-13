@@ -12,12 +12,12 @@ import com.sonht.config.DatabaseContext;
 import com.sonht.model.Post;
 
 public class PostDAO {
-	Connection connection = null;
-	Statement statement = null;
-	PreparedStatement preStatement = null;
-	ResultSet rs = null;
+	
 	
 	public List<Post> getAllPosts() throws SQLException {
+		Connection connection = null;
+		Statement statement = null;
+		ResultSet rs = null;
 		List<Post> list = new ArrayList<Post>();
 		try {
 			connection = new DatabaseContext().getConnection();
@@ -55,6 +55,9 @@ public class PostDAO {
 	}
 
 	public Post getPostById(String postId) throws Exception {
+		Connection connection = null;
+		PreparedStatement preStatement = null;
+		ResultSet rs = null;
 		int id;
 		Post postById = null;
 		try {
@@ -89,6 +92,9 @@ public class PostDAO {
 	}
 
 	public void addPost(Post post) throws SQLException {
+		Connection connection = null;
+		PreparedStatement preStatement = null;
+		ResultSet rs = null;
 		try {
 			connection = new DatabaseContext().getConnection();
 			String sql = "insert into post "
@@ -108,6 +114,9 @@ public class PostDAO {
 	}
 	
 	public void deletePost(String id) throws SQLException {
+		Connection connection = null;
+		PreparedStatement preStatement = null;
+		ResultSet rs = null;
 		try {
 			connection = new DatabaseContext().getConnection();
 			String sql = "update post set status=? where id=? ";
@@ -122,6 +131,8 @@ public class PostDAO {
 	}
 
 	public void updatePost(Post post) throws SQLException {
+		Connection connection = null;
+		PreparedStatement preStatement = null;
 		try {
 			connection = new DatabaseContext().getConnection();
 			String sql = "update post set name=?, image=?, description=?, created_date=? where id=? ";
@@ -139,11 +150,14 @@ public class PostDAO {
 	}
 
 	public Post getPostById(int id) throws Exception {
+		Connection connection = null;
+		PreparedStatement preStatement = null;
+		ResultSet rs = null;
 		Post postById = null;
 		try {
 			// get connection to db
 			connection = new DatabaseContext().getConnection();
-			// create sql to get user by id
+			// create sql to get post by id
 			String sql = "select * from post where id=? and status = 'active' ";
 
 			// create prepare statement

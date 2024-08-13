@@ -39,11 +39,25 @@
 			</div>
 		</div>
 		<div class="row">
+			<h3>${list_comments.size()} comments</h3>
+			<c:forEach var="comment" items="${list_comments}">
+				<div class="col-lg-12">
+					<h5>${comment.name }</h5>
+					<p><span>${comment.createdDate}</span></p>
+					<p>${comment.commentMessage}</p>
+					<p>${comment.rate} star</p>
+				</div>
+			</c:forEach>
+		</div>
+		<div class="row">
 			<div class="col-lg-12">
 				<h3 class="heading mb-4">Star Rating</h3>
-				<form method="post" class="star-rating">
+				
+				<form method="post" class="star-rating" action="${pageContext.servletContext.contextPath}/comment">
+					<input type="hidden"  name="userId" value="${sessionScope.userLogin.id}">
+					<input type="hidden" name="postId" value="${param.id}">
 					<div class="form-check">
-						<input type="checkbox" class="form-check-input" id="exampleCheck1">
+						<input type="checkbox" class="form-check-input" id="exampleCheck1" name="rate" value="5">
 						<label class="form-check-label" for="exampleCheck1">
 							<p class="rate">
 								<span><i class="icon-star"></i><i class="icon-star"></i><i
@@ -53,7 +67,7 @@
 						</label>
 					</div>
 					<div class="form-check">
-						<input type="checkbox" class="form-check-input" id="exampleCheck1">
+						<input type="checkbox" class="form-check-input" id="exampleCheck1" name="rate" value="4">
 						<label class="form-check-label" for="exampleCheck1">
 							<p class="rate">
 								<span><i class="icon-star"></i><i class="icon-star"></i><i
@@ -63,7 +77,7 @@
 						</label>
 					</div>
 					<div class="form-check">
-						<input type="checkbox" class="form-check-input" id="exampleCheck1">
+						<input type="checkbox" class="form-check-input" id="exampleCheck1" name="rate" value="3">
 						<label class="form-check-label" for="exampleCheck1">
 							<p class="rate">
 								<span><i class="icon-star"></i><i class="icon-star"></i><i
@@ -73,7 +87,7 @@
 						</label>
 					</div>
 					<div class="form-check">
-						<input type="checkbox" class="form-check-input" id="exampleCheck1">
+						<input type="checkbox" class="form-check-input" id="exampleCheck1" name="rate" value="2">
 						<label class="form-check-label" for="exampleCheck1">
 							<p class="rate">
 								<span><i class="icon-star"></i><i class="icon-star"></i><i
@@ -83,19 +97,23 @@
 						</label>
 					</div>
 					<div class="form-check">
-						<input type="checkbox" class="form-check-input" id="exampleCheck1">
+						<input type="checkbox" class="form-check-input" id="exampleCheck1" name="rate" value="1"> 
 						<label class="form-check-label" for="exampleCheck1">
 							<p class="rate">
-								<span><i class="icon-star"></i><i class="icon-star-o"></i><i
-									class="icon-star-o"></i><i class="icon-star-o"></i><i
-									class="icon-star-o"></i></span>
+								<span>
+									<i class="icon-star"></i>
+									<i class="icon-star-o"></i>
+									<i class="icon-star-o"></i>
+									<i class="icon-star-o"></i>
+									<i class="icon-star-o"></i>
+								</span>
 							</p>
 						</label>
 					</div>
 					<div class="form-group">
 						<label for="message">Message</label>
-						<textarea name="" id="" cols="30" rows="7" class="form-control"
-							placeholder="Message"></textarea>
+						<textarea name="comment" id="" cols="30" rows="7" class="form-control"
+							placeholder="Leave your idea about this post"></textarea>
 					</div>
 					<div class="form-group">
 						<input type="submit" value="Post Comment"

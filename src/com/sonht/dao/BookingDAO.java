@@ -12,12 +12,13 @@ import com.sonht.config.DatabaseContext;
 import com.sonht.dto.BookingDTO;
 
 public class BookingDAO {
-	Connection connection = null;
-	Statement statement = null;
-	PreparedStatement preStatement = null;
-	ResultSet rs = null;
+	
 	
 	public List<BookingDTO> getBookingsByUserId(int userId) throws SQLException {
+		Connection connection = null;
+		Statement statement = null;
+		PreparedStatement preStatement = null;
+		ResultSet rs = null;
 		List<BookingDTO> list = new ArrayList<BookingDTO>();
 		try {
 			connection = new DatabaseContext().getConnection();

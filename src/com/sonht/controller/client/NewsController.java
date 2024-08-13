@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.sonht.controller.admin.BaseController;
+import com.sonht.dto.CommentDTO;
+import com.sonht.model.Comment;
 import com.sonht.model.Post;
 import com.sonht.model.Tour;
 
@@ -28,11 +30,9 @@ public class NewsController extends BaseController {
 		}
 		try {
 			switch (command) {
-			case "DETAILS" -> detailNews(request, response);
-			default -> listNews(request, response);
+				case "DETAILS" -> detailNews(request, response);
+				default -> listNews(request, response);
 			}
-		
-			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -47,11 +47,11 @@ public class NewsController extends BaseController {
 	private void detailNews(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		String id = request.getParameter("id");
 		Post post = getPostDAO().getPostById(id);
+		List<CommentDTO> comments = getCommentDAO().getCommentOfPost(id);
+		
 		request.setAttribute("post", post);
+		request.setAttribute("list_comments", comments);
 		request.getRequestDispatcher("/views/client/pages/detailNews.jsp").forward(request, response);
-	}
-
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	}
 
 }

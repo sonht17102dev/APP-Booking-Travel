@@ -14,12 +14,13 @@ import com.sonht.model.Tour;
 import com.sonht.model.User;
 
 public class TourDAO {
-	Connection connection = null;
-	Statement statement = null;
-	PreparedStatement preStatement = null;
-	ResultSet rs = null;
+	
 
 	public List<Tour> getAllTours() throws SQLException {
+		Connection connection = null;
+		Statement statement = null;
+		PreparedStatement preStatement = null;
+		ResultSet rs = null;
 		List<Tour> list = new ArrayList<Tour>();
 		try {
 			connection = new DatabaseContext().getConnection();
@@ -58,6 +59,10 @@ public class TourDAO {
 	}
 
 	public void addTour(Tour tour) throws SQLException {
+		Connection connection = null;
+		Statement statement = null;
+		PreparedStatement preStatement = null;
+		ResultSet rs = null;
 		try {
 			connection = new DatabaseContext().getConnection();
 			String sql = "insert into tour "
@@ -80,6 +85,10 @@ public class TourDAO {
 	}
 
 	public Tour getTourById(String tourId) throws Exception {
+		Connection connection = null;
+		Statement statement = null;
+		PreparedStatement preStatement = null;
+		ResultSet rs = null;
 		int id;
 		Tour tourById = null;
 		try {
@@ -114,13 +123,11 @@ public class TourDAO {
 		}
 	}
 
-	public static void main(String[] args) throws Exception {
-		TourDAO dao = new TourDAO();
-		Tour tour = dao.getTourById("1");
-		System.out.println(tour);
-	}
-
 	public void updateTour(int id, Tour tour) throws SQLException {
+		Connection connection = null;
+		Statement statement = null;
+		PreparedStatement preStatement = null;
+		ResultSet rs = null;
 		try {
 			connection = new DatabaseContext().getConnection();
 			String sql = "update tour " + "set name=?, image=?, description=?, start_date=?, "
@@ -142,6 +149,10 @@ public class TourDAO {
 	}
 
 	public void deleteTour(String id) throws SQLException {
+		Connection connection = null;
+		Statement statement = null;
+		PreparedStatement preStatement = null;
+		ResultSet rs = null;
 		try {
 			connection = new DatabaseContext().getConnection();
 			String sql = "update tour set status=? where id=? ";
@@ -156,6 +167,10 @@ public class TourDAO {
 	}
 
 	public List<Tour> searchByKeyWord(String keyword) throws SQLException {
+		Connection connection = null;
+		Statement statement = null;
+		PreparedStatement preStatement = null;
+		ResultSet rs = null;
 		List<Tour> tours = new ArrayList<Tour>();
 		try {
 			connection = new DatabaseContext().getConnection();
@@ -178,6 +193,10 @@ public class TourDAO {
 	}
 
 	public List<Tour> searchByDate(String date) throws SQLException {
+		Connection connection = null;
+		Statement statement = null;
+		PreparedStatement preStatement = null;
+		ResultSet rs = null;
 		List<Tour> tours = new ArrayList<Tour>();
 		try {
 			connection = new DatabaseContext().getConnection();

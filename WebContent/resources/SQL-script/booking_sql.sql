@@ -46,7 +46,7 @@ CREATE TABLE booking (
     status VARCHAR(20) NOT NULL
 );
 --
--- Table structure for table `booking`
+-- Table structure for table `post`
 --
 DROP TABLE IF EXISTS `post`;
 CREATE TABLE post (
@@ -57,7 +57,18 @@ CREATE TABLE post (
     created_date varchar(20) NOT NULL,
     status VARCHAR(20) NOT NULL
 );
-
+--
+-- Table structure for table `comment`
+--
+DROP TABLE IF EXISTS `comment`;
+CREATE TABLE comment (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT NOT NULL,
+    post_id INT NOT NULL,
+    created_date varchar(20) NOT NULL,
+    comment_message text,
+    rate INT NOT NULL
+);
 --
 -- Dumping data for table `user`
 --
@@ -196,3 +207,12 @@ by <a href="https://www.backpackerswanderlust.com/author/tashyie/">Tasha Amy</a>
  as well as the best places to stay and eat. With the information in my&nbsp; Da Nang, Vietnam guide in hand, 
  you can be confident that your trip to see one of Vietnam\'s most incredible cities will be one that you remember 
  for the rest of your life.</p>', '2024-08-11', 'active');
+ 
+ --
+-- Dumping data for table `comment`
+-- add data comment samples
+INSERT INTO comment (user_id, post_id, created_date, comment_message, rate) VALUES
+(2, 1, '2024-08-13','The post is excellent', 5),
+(1, 1, '2024-08-11','I don\'t think so', 3),
+(1, 2, '2024-08-10','I think i loved this place', 5),
+(3, 2, '2024-08-12','The post is excellent', 4);

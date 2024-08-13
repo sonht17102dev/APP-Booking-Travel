@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.Part;
 
 import com.sonht.dao.BookingDAO;
+import com.sonht.dao.CommentDAO;
 import com.sonht.dao.PostDAO;
 import com.sonht.dao.TourDAO;
 import com.sonht.dao.UserDAO;
@@ -43,6 +44,9 @@ public class BaseController extends HttpServlet {
 	}
 	public PostDAO getPostDAO() {
 		return new PostDAO();
+	}
+	public CommentDAO getCommentDAO() {
+		return new CommentDAO();
 	}
 	
 	public List<String> validatePost(Post post) {
