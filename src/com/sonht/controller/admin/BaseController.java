@@ -17,6 +17,7 @@ import com.sonht.dao.CommentDAO;
 import com.sonht.dao.PostDAO;
 import com.sonht.dao.TourDAO;
 import com.sonht.dao.UserDAO;
+import com.sonht.model.Comment;
 import com.sonht.model.Post;
 import com.sonht.model.Tour;
 import com.sonht.model.User;
@@ -89,6 +90,15 @@ public class BaseController extends HttpServlet {
 		return messagesError;
 	}
 
+	public List<String> validateComment(Comment com) {
+		List<String> messagesError = new ArrayList<String>();
+		
+		if(com.getRate() != 0) {
+			messagesError.add("Please choose your star to rate the post!");
+		}
+		
+		return messagesError;
+	}
 	public List<String> validateTripDates(String startDateStr, String endDateStr) {
 		List<String> results = new ArrayList<String>();
 		
@@ -207,7 +217,9 @@ public class BaseController extends HttpServlet {
 
 		return messagesError;
 	}
-
+	public boolean isValidInput(String input) {
+		return input != null && !input.isEmpty();
+	}
 	public boolean isValidFullname(String fullname) {
 		return fullname != null && !fullname.isEmpty();
 	}

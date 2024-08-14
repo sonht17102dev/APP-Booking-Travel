@@ -39,89 +39,52 @@
 			</div>
 		</div>
 		<div class="row">
-			<h3>${list_comments.size()} comments</h3>
+			<h3>${list_comments.size()}comments</h3>
 			<c:forEach var="comment" items="${list_comments}">
 				<div class="col-lg-12">
 					<h5>${comment.name }</h5>
-					<p><span>${comment.createdDate}</span></p>
+					<p>
+						<span>${comment.createdDate}</span>
+					</p>
 					<p>${comment.commentMessage}</p>
-					<p>${comment.rate} star</p>
+					<p>${comment.rate}star</p>
 				</div>
 			</c:forEach>
 		</div>
 		<div class="row">
 			<div class="col-lg-12">
 				<h3 class="heading mb-4">Star Rating</h3>
-				
-				<form method="post" class="star-rating" action="${pageContext.servletContext.contextPath}/comment">
-					<input type="hidden"  name="userId" value="${sessionScope.userLogin.id}">
-					<input type="hidden" name="postId" value="${param.id}">
-					<div class="form-check">
-						<input type="checkbox" class="form-check-input" id="exampleCheck1" name="rate" value="5">
-						<label class="form-check-label" for="exampleCheck1">
-							<p class="rate">
-								<span><i class="icon-star"></i><i class="icon-star"></i><i
-									class="icon-star"></i><i class="icon-star"></i><i
-									class="icon-star"></i></span>
-							</p>
-						</label>
+
+				<form method="post" class="star-rating"
+					action="${pageContext.servletContext.contextPath}/news">
+					<input type="hidden" name="userId"
+						value="${sessionScope.userLogin.id}"> <input type="hidden"
+						name="postId" value="${param.id}">
+					<div class=" d-flex  mt-2">
+						<div class=" text-center mb-5">
+							<div class="rating">
+								<input type="radio" name="rating" value="5" id="5"><label
+									for="5">☆</label> <input type="radio" name="rating" value="4"
+									id="4"><label for="4">☆</label> <input type="radio"
+									name="rating" value="3" id="3"><label for="3">☆</label>
+								<input type="radio" name="rating" value="2" id="2"><label
+									for="2">☆</label> <input type="radio" name="rating" value="1"
+									id="1"><label for="1">☆</label>
+							</div>
+						</div>
 					</div>
-					<div class="form-check">
-						<input type="checkbox" class="form-check-input" id="exampleCheck1" name="rate" value="4">
-						<label class="form-check-label" for="exampleCheck1">
-							<p class="rate">
-								<span><i class="icon-star"></i><i class="icon-star"></i><i
-									class="icon-star"></i><i class="icon-star"></i><i
-									class="icon-star-o"></i></span>
-							</p>
-						</label>
-					</div>
-					<div class="form-check">
-						<input type="checkbox" class="form-check-input" id="exampleCheck1" name="rate" value="3">
-						<label class="form-check-label" for="exampleCheck1">
-							<p class="rate">
-								<span><i class="icon-star"></i><i class="icon-star"></i><i
-									class="icon-star"></i><i class="icon-star-o"></i><i
-									class="icon-star-o"></i></span>
-							</p>
-						</label>
-					</div>
-					<div class="form-check">
-						<input type="checkbox" class="form-check-input" id="exampleCheck1" name="rate" value="2">
-						<label class="form-check-label" for="exampleCheck1">
-							<p class="rate">
-								<span><i class="icon-star"></i><i class="icon-star"></i><i
-									class="icon-star-o"></i><i class="icon-star-o"></i><i
-									class="icon-star-o"></i></span>
-							</p>
-						</label>
-					</div>
-					<div class="form-check">
-						<input type="checkbox" class="form-check-input" id="exampleCheck1" name="rate" value="1"> 
-						<label class="form-check-label" for="exampleCheck1">
-							<p class="rate">
-								<span>
-									<i class="icon-star"></i>
-									<i class="icon-star-o"></i>
-									<i class="icon-star-o"></i>
-									<i class="icon-star-o"></i>
-									<i class="icon-star-o"></i>
-								</span>
-							</p>
-						</label>
-					</div>
-					<div class="form-group">
-						<label for="message">Message</label>
-						<textarea name="comment" id="" cols="30" rows="7" class="form-control"
-							placeholder="Leave your idea about this post"></textarea>
-					</div>
-					<div class="form-group">
-						<input type="submit" value="Post Comment"
-							class="btn btn-primary py-3 px-5">
-					</div>
-				</form>
+			<div class="form-group">
+				<label for="message">Message</label>
+				<textarea name="comment" id="" cols="30" rows="7"
+					class="form-control" placeholder="Leave your idea about this post"></textarea>
 			</div>
+			<div class="form-group">
+				<input type="submit" value="Post Comment"
+					class="btn btn-primary py-3 px-5">
+			</div>
+			</form>
 		</div>
+	</div>
 	</div>
 </section>
 

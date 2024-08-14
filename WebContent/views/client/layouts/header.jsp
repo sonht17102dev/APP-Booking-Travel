@@ -29,6 +29,10 @@
     <link rel="stylesheet" href="<c:url value="/views/client/css/flaticon.css"/>">
     <link rel="stylesheet" href="<c:url value="/views/client/css/icomoon.css"/>">
     <link rel="stylesheet" href="<c:url value="/views/client/css/style.css"/>">
+    <link rel="stylesheet" href="<c:url value="/views/client/css/rate.css"/>">
+    <style>
+ 
+    </style>
   </head>
   <body>
     

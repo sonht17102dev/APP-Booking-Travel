@@ -9,7 +9,11 @@ public class Comment {
 	private int rate;
 
 	public Comment(int id, int userId, int postId, String createdDate, String commentMessage, int rate) {
+		this(userId, postId, createdDate, commentMessage, rate);
 		this.id = id;
+	}
+
+	public Comment(int userId, int postId, String createdDate, String commentMessage, int rate) {
 		this.userId = userId;
 		this.postId = postId;
 		this.createdDate = createdDate;

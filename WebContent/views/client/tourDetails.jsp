@@ -51,7 +51,7 @@
 		</div>
 		<form action="${pageContext.servletContext.contextPath}/booking" class="w-100" method="POST">
 			<input type="hidden" value="${tour.id}" name="tourId">
-			<input type="hidden" value="1" name="userId">
+			<input type="hidden" value="${sessionScope.loginUser.id}" name="userId">
 			<div class="row">
 				<div class="col-md-6 pr-md-5">
 					<div class="form-group">

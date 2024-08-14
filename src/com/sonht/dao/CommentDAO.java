@@ -63,4 +63,25 @@ public class CommentDAO {
 			e.printStackTrace();
 		}
 	}
+	public void createComment(Comment comment) throws SQLException {
+		Connection connection = null;
+		PreparedStatement preStatement = null;
+		ResultSet rs = null;
+		try {
+			connection = new DatabaseContext().getConnection();
+			String sql = "insert into comment "
+					+ " (user_id, post_id, created_date, comment_message, rate) "
+					+ "VALUES (?, ?, ?, ?, ?) ";
+			preStatement = connection.prepareStatement(sql);
+			preStatement.setInt(1, comment.getUserId());
+			preStatement.setInt(2, comment.getPostId());
+			preStatement.setString(3, comment.getCreatedDate());
+			preStatement.setString(4, comment.getCommentMessage());
+			preStatement.setInt(5, comment.getRate());
+			preStatement.execute();
+		} finally {
+			close(connection, null, preStatement, null);
+		}
+		
+	}
 }
