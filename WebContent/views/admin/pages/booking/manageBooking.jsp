@@ -33,28 +33,14 @@
 	                            </tr>
                             </thead>
                             <tbody>
-                            <%-- <c:forEach begin="1" end="15"> --%>
+                            <c:forEach var="booking" items="${list_bookings}">
                                 <tr>
-                                    <td>Nha Trang Tour</td>
-                                    <td>1</td>
-                                    <td>2</td>
-                                    <td>Tom</td>
-                                    <td>50</td>
-                                    <td>2024-03-28</td>
-                                    <td>
-	                                    <button type="button" class="btn btn-primary update-btn" data-bs-toggle="modal"
-	                                        data-bs-target="#modalApprove" >Approve</button>
-                                        <button type="button" class="btn btn-danger " data-bs-toggle="modal"
-	                                        data-bs-target="#modalCancel" >Cancel</button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>Phu Quoc Tour</td>
-                                    <td>2</td>
-                                    <td>1</td>
-                                    <td>Jerry</td>
-                                    <td>59</td>
-                                    <td>2024-04-05</td>
+                                    <td>Tour Name</td>
+                                    <td>${booking.adultQuantity}</td>
+                                    <td>${booking.childQuantity}</td>
+                                    <td>Customer Name</td>
+                                    <td>Tour price</td>
+                                    <td>${booking.createdDate}</td>
                                     <td>
 	                                    <button type="button" class="btn btn-primary update-btn" data-bs-toggle="modal"
 	                                        data-bs-target="#modalApprove" >Approve</button>
@@ -63,7 +49,7 @@
                                     </td>
                                 </tr>
 	                           
-                          <%--   </c:forEach> --%>
+                         	</c:forEach>
                             </tbody>
                         </table>
                     </div>

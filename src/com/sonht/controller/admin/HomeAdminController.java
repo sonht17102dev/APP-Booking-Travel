@@ -13,7 +13,6 @@ public class HomeAdminController extends BaseController {
 	private static final long serialVersionUID = 1L;
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
 		request.getRequestDispatcher("/views/admin/pages/home.jsp").forward(request, response);
 	}
 

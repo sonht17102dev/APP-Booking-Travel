@@ -51,6 +51,7 @@
 	          <li class="nav-item "><a href="${pageContext.servletContext.contextPath}/login" class="nav-link">Log In</a></li>
 	      </c:if>
 	       <c:if test='${userLogin != null}'>
+	          <li class="nav-item "><a href="${pageContext.servletContext.contextPath}/booking" class="nav-link">Booking</a></li>
 	          <li class="nav-item "><a href="${pageContext.servletContext.contextPath}/logout" class="nav-link">Log Out</a></li>
 	      </c:if>
 		 <li class="nav-item "><a href="${pageContext.servletContext.contextPath}/signup" class="nav-link">Sign Up</a></li>

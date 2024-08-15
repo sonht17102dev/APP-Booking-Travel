@@ -22,6 +22,7 @@ public class SignUpController extends BaseController {
        
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setAttribute("action", "signup");
+		request.getSession().removeAttribute("message");
 		request.getRequestDispatcher("/views/admin/pages/authForm.jsp").forward(request, response);
 	}
 
@@ -78,16 +79,16 @@ public class SignUpController extends BaseController {
 		if (!isValidEmail(email)) {
 			messagesError.add("Please type your email or type invalid email");
 		}
-		if (!isValidFullname(fullname)) {
+		if (!isValidInput(fullname)) {
 	        messagesError.add("Please type your full name");
 	    }
-	    if (!isValidUsername(username)) {
+	    if (!isValidInput(username)) {
 	        messagesError.add("Please type your username");
 	    }
-	    if (!isValidPassword(pass)) {
+	    if (!isValidInput(pass)) {
 	        messagesError.add("Please type your password");
 	    }
-	    if (!isValidPassword(repass)) {
+	    if (!isValidInput(repass)) {
 	        messagesError.add("Please type your Re-Password");
 	    }
 		

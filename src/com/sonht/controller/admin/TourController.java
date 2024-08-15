@@ -112,7 +112,7 @@ public class TourController extends BaseController {
 		String content = request.getParameter("editorUp" + id);
 		
 		Tour tour = null;
-		if (isValidPrice(priceUp))
+		if (isValidInput(priceUp))
 			tour = new Tour( tourName, "", content, start, duetime, Double.parseDouble(priceUp), address, "active");
 		else 
 			tour = new Tour( tourName, "", content, start, duetime, 0, address, "active");
@@ -162,7 +162,7 @@ public class TourController extends BaseController {
 		String photoName = request.getParameter("filename");
 		
 		Tour tour = null;
-		if (isValidPrice(priceAdd))
+		if (isValidInput(priceAdd))
 			tour = new Tour( tourName, photoName, content, start, duetime, Double.parseDouble(priceAdd), address, "active");
 		else 
 			tour = new Tour( tourName, photoName, content, start, duetime, 0, address, "active");

@@ -5,12 +5,10 @@ import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.sonht.model.Booking;
-import com.sonht.model.Tour;
+import com.sonht.dto.BookingAdminDTO;
 
 /**
  * Servlet implementation class BookingController
@@ -47,9 +45,9 @@ public class BookingController extends BaseController {
 	}
 
 	private void listBookings(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-//		List<Booking> listBookings = getBookingDAO().getAllTBookings();
-//		request.setAttribute("list_bookings", listBookings);
+			throws Exception {
+		List<BookingAdminDTO> listBookings = getBookingDAO().getAllBookings();
+		request.setAttribute("list_bookings", listBookings);
 		request.getRequestDispatcher("/views/admin/pages/booking/manageBooking.jsp").forward(request, response);
 	}
 

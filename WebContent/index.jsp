@@ -10,12 +10,12 @@
       <div class="container">
         <div class="row no-gutters slider-text js-fullheight align-items-center justify-content-start" data-scrollax-parent="true">
           <div class="col-md-9 ftco-animate" data-scrollax=" properties: { translateY: '70%' }">
-          	<c:if test="${userLogin != null }">
+          	<c:if test="${userLogin != null || adminLogin != null}">
             	<h1 class="mb-4" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }">
-            	<strong>Welcome back <br></strong> ${userLogin.username}
+            	<strong>Welcome back <br></strong> ${userLogin.username} ${adminLogin.username}
             	</h1>
           	</c:if>
-          	<c:if test="${userLogin == null }">
+          	<c:if test="${userLogin == null && adminLogin == null}">
             	<h1 class="mb-4" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }">
             	<strong>Explore <br></strong> your amazing city</h1>
             </c:if>

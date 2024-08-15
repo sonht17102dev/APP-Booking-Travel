@@ -9,7 +9,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.sonht.config.DatabaseContext;
+import com.sonht.dto.BookingAdminDTO;
 import com.sonht.dto.BookingDTO;
+import com.sonht.model.Booking;
 
 public class BookingDAO {
 	
@@ -48,6 +50,7 @@ public class BookingDAO {
 				list.add(booking);
 			}
 			return list;
+			
 		} finally {
 			close(connection, statement, null, rs);
 		}
@@ -67,6 +70,59 @@ public class BookingDAO {
 
 		} catch (Exception e) {
 			e.printStackTrace();
+		}
+	}
+
+
+	public void addNewBooking(Booking booking) throws SQLException {
+		Connection connection = null;
+		PreparedStatement preStatement = null;
+		try {
+			connection = new DatabaseContext().getConnection();
+			String sql = "insert into booking  "
+					+ " (user_id, tour_id, adults_quantity, children_quantity, created_date, status) values "
+					+ " (?, ?, ?, ?, ?, ? ) ";
+			
+			preStatement = connection.prepareStatement(sql);
+			preStatement.setInt(1, booking.getUserId());
+			preStatement.setInt(2, booking.getTourId());
+			preStatement.setInt(3, booking.getAdultQuantity());
+			preStatement.setInt(4, booking.getChildQuantity());
+			preStatement.setString(5, booking.getCreatedDate());
+			preStatement.setString(6, booking.getStatus());
+			
+			preStatement.execute();
+		} finally {
+			close(connection, null, preStatement, null);
+		}
+		
+	}
+
+
+	public List<BookingAdminDTO> getAllBookings() throws SQLException {
+		Connection connection = null;
+		Statement statement = null;
+		PreparedStatement preStatement = null;
+		ResultSet rs = null;
+		List<BookingAdminDTO> list = new ArrayList<BookingAdminDTO>();
+		try {
+			connection = new DatabaseContext().getConnection();
+			String sql = "select * from booking where status='active' ";
+			preStatement = connection.prepareStatement(sql);
+			
+			rs = preStatement.executeQuery();
+			while (rs.next()) {
+				// retrieve data from result set row and create new booking object
+				BookingAdminDTO booking = new BookingAdminDTO(rs.getString("tour_name"), rs.getInt("adults_quantity"), rs.getInt("children_quantity"),
+						rs.getString("fullname"), rs.getDouble("tour_price"), rs.getString("created_date"));
+
+				// add it to the bookings
+				list.add(booking);
+			}
+			return list;
+			
+		} finally {
+			close(connection, statement, null, rs);
 		}
 	}
 }

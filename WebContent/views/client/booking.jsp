@@ -25,7 +25,9 @@
 <main>
 	<div class="container-fluid px-4">
        <h1 class="mt-4">Travel Booking List</h1>
-           
+       <c:if test="${sessionScope.message != null}">
+        <h4 class="text-success">Congratulations on your successful tour booking!</h4>   
+       </c:if>
         <table class="table">
             <thead class="table-lightgray">
 	             <tr style="background-color: lightgray !important;">
@@ -39,9 +41,10 @@
 				</tr>
 			</thead>
 			<tbody>
-			<c:forEach var="booking" items="${listBookings}" >
+			
+			<c:forEach var="booking" items="${listBookings}" varStatus="loop">
 				<tr>
-					<td>1</td>
+					<td>${loop.index + 1}</td>
 				    <td style="width:200px">
 				     <img style="width:100%;" 
 				     	src="${pageContext.servletContext.contextPath}/resources/images/${booking.image}">

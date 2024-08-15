@@ -18,6 +18,7 @@ public class LoginController extends BaseController {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		request.setAttribute("action", "login");
+		request.getSession().removeAttribute("message");
 		request.getRequestDispatcher("/views/admin/pages/authForm.jsp").forward(request, response);
 	}
 
@@ -27,9 +28,8 @@ public class LoginController extends BaseController {
 		String pass = request.getParameter("password");
 		HttpSession session = request.getSession();
 		String authenPath = "/views/admin/pages/authForm.jsp";
-		String adminPath = "/views/admin/pages/home.jsp";
 		// if email and password not valid
-		if (!isValidEmail(email) && !isValidPassword(pass)) {
+		if (!isValidEmail(email) && !isValidInput(pass)) {
 			request.setAttribute("message", "Invalid Email or Invalid Pass!");
 			request.setAttribute("action", "login");
 			request.getRequestDispatcher(authenPath).forward(request, response);
@@ -41,7 +41,7 @@ public class LoginController extends BaseController {
 			if (user == null) {
 				request.setAttribute("message", "User mail is not exist! Try again!");
 				request.setAttribute("action", "login");
-				request.getRequestDispatcher("/views/admin/pages/authForm.jsp").forward(request, response);
+				request.getRequestDispatcher(authenPath).forward(request, response);
 			} else {
 				// if pass is not correct
 				if (!pass.equals(user.getPassword())) {
@@ -55,13 +55,13 @@ public class LoginController extends BaseController {
 					session.setAttribute("message", "Login Success");
 					session.setAttribute("role", "admin");
 					session.setMaxInactiveInterval(60*15);
-					request.getRequestDispatcher(adminPath).forward(request, response);
+					response.sendRedirect(request.getContextPath() +"/admin");
 				} else {
 					session.setAttribute("userLogin", user);
 					session.setAttribute("message", "Login Success");
 					session.setMaxInactiveInterval(60*15);
 					session.setAttribute("role", "user");
-					request.getRequestDispatcher("/index.jsp").forward(request, response);
+					response.sendRedirect(request.getContextPath() + "/");
 				}
 			}
 

@@ -49,9 +49,16 @@
 			</div>
 			<p>${tour.description}</p>
 		</div>
+		<div>
+			<c:if test="${sessionScope.messagesError != null}">
+				<c:forEach var="error" items="${messagesError}">
+					<p class="text-danger ">${error}</p>
+				</c:forEach>
+			</c:if>
+		</div>
 		<form action="${pageContext.servletContext.contextPath}/booking" class="w-100" method="POST">
 			<input type="hidden" value="${tour.id}" name="tourId">
-			<input type="hidden" value="${sessionScope.loginUser.id}" name="userId">
+			<input type="hidden" value="${sessionScope.userLogin.id}" name="userId">
 			<div class="row">
 				<div class="col-md-6 pr-md-5">
 					<div class="form-group">

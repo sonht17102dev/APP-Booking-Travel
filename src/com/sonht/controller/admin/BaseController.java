@@ -54,15 +54,35 @@ public class BaseController extends HttpServlet {
 		
 		List<String> errors = new ArrayList<String>();
 		
-		if (!isValidFullname(post.getName())) {
+		if (!isValidInput(post.getName())) {
 			errors.add("Title post is required!");
 		}
 		
 		if (!isValidStartDate(post.getCreatedDate())) {
 			errors.add("Post creation date is required or cannot be before the current date!");
 		}
-		if (!isValidDescription(post.getDescription())) {
+		if (!isValidInput(post.getDescription())) {
 			errors.add("Description is required!");
+		}
+		
+		return errors;
+	}
+	public List<String> validateBooking(String userId, String postId, String quantityAdults, String quantityChildren) {
+		
+		List<String> errors = new ArrayList<String>();
+		
+		if (!isValidInput(userId)) {
+			errors.add("You should login before booking a tour!");
+		}
+		
+		if (!isValidInput(postId)) {
+			errors.add("Post id is required!");
+		}
+		if (!isValidInput(quantityAdults)) {
+			errors.add("Quantity adults is required!");
+		}
+		if (!isValidInput(quantityChildren)) {
+			errors.add("Quantity children is required!");
 		}
 		
 		return errors;
@@ -73,17 +93,17 @@ public class BaseController extends HttpServlet {
 		if (!errors.isEmpty()) {
 			messagesError.addAll(errors);
 		}
-		if (!isValidFullname(tour.getName())) {
+		if (!isValidInput(tour.getName())) {
 			messagesError.add("Tour Name is required!");
 		}
 		if (tour.getPrice() == 0) {
 			messagesError.add("Tour Price is required!");
 		}
 
-		if (!isValidAddress(tour.getAddress())) {
+		if (!isValidInput(tour.getAddress())) {
 			messagesError.add("Tour address is required!");
 		}
-		if (!isValidDescription(tour.getDescription())) {
+		if (!isValidInput(tour.getDescription())) {
 			messagesError.add("Description is required!");
 		}
 
@@ -193,7 +213,7 @@ public class BaseController extends HttpServlet {
 	public List<String> validateUser(User user, String command) {
 		List<String> messagesError = new ArrayList<>();
 
-		if (!isValidFullname(user.getFullname())) {
+		if (!isValidInput(user.getFullname())) {
 			messagesError.add("Please type your full name");
 		}
 		if (command.equals("ADD") && !isValidEmail(user.getEmail())) {
@@ -202,13 +222,13 @@ public class BaseController extends HttpServlet {
 		if (!isValidPhoneNumber(user.getPhoneNumber())) {
 			messagesError.add("Please type your phone number or phone number must have 10 digits");
 		}
-		if (!isValidAddress(user.getAddress())) {
+		if (!isValidInput(user.getAddress())) {
 			messagesError.add("Please type your address");
 		}
-		if (command.equals("ADD") && !isValidUsername(user.getUsername())) {
+		if (command.equals("ADD") && !isValidInput(user.getUsername())) {
 			messagesError.add("Please type your username");
 		}
-		if (command.equals("ADD") && !isValidPassword(user.getPassword())) {
+		if (command.equals("ADD") && !isValidInput(user.getPassword())) {
 			messagesError.add("Please type your password");
 		}
 		if (user.getRoleId() == -1) {
@@ -220,17 +240,6 @@ public class BaseController extends HttpServlet {
 	public boolean isValidInput(String input) {
 		return input != null && !input.isEmpty();
 	}
-	public boolean isValidFullname(String fullname) {
-		return fullname != null && !fullname.isEmpty();
-	}
-
-	public boolean isValidDescription(String description) {
-		return description != null && !description.isEmpty();
-	}
-
-	public boolean isValidPrice(String price) {
-		return price != null && !price.isEmpty();
-	}
 
 	public boolean isValidEmail(String email) {
 		return email != null && !email.trim().isEmpty() && email.matches(EMAIL_REGEX);
@@ -240,17 +249,6 @@ public class BaseController extends HttpServlet {
 		return phoneNumber != null && !phoneNumber.trim().isEmpty() && phoneNumber.matches(PHONE_REGEX);
 	}
 
-	public boolean isValidAddress(String address) {
-		return address != null && !address.trim().isEmpty();
-	}
-
-	public boolean isValidUsername(String username) {
-		return username != null && !username.trim().isEmpty();
-	}
-
-	public boolean isValidPassword(String password) {
-		return password != null && !password.trim().isEmpty();
-	}
 	public String getFileName(Part part) {
 		String contentDisposition = part.getHeader("content-disposition");
 		for (String cd : contentDisposition.split(";")) {
