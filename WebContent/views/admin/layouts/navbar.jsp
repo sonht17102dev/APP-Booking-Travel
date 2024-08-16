@@ -18,7 +18,12 @@
 	</form>
 	<!-- Navbar-->
 	<ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
-		<li class="nav-item dropdown">
+		<%-- <li class="nav-item px-3">
+			<button class="btn btn-secondary" onclick="window.location.href='${pageContext.servletContext.contextPath}/'; return false;">
+			<i class="fas fa-user fa-fw"></i>
+			<span>Home page</span></button>
+		</li> --%>
+		<li class="nav-item">
 			<form action="${pageContext.servletContext.contextPath}/admin/logout" method="post">
 			<button class="btn btn-primary"><i class="fas fa-user fa-fw"></i><span>
 					Logout</span></button>

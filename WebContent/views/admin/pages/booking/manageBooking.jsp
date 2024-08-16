@@ -35,11 +35,11 @@
                             <tbody>
                             <c:forEach var="booking" items="${list_bookings}">
                                 <tr>
-                                    <td>Tour Name</td>
-                                    <td>${booking.adultQuantity}</td>
-                                    <td>${booking.childQuantity}</td>
-                                    <td>Customer Name</td>
-                                    <td>Tour price</td>
+                                    <td>${booking.tourName}</td>
+                                    <td>${booking.adultsQuantity}</td>
+                                    <td>${booking.childrenQuantity}</td>
+                                    <td>${booking.customerName}</td>
+                                    <td>${booking.price}</td>
                                     <td>${booking.createdDate}</td>
                                     <td>
 	                                    <button type="button" class="btn btn-primary update-btn" data-bs-toggle="modal"

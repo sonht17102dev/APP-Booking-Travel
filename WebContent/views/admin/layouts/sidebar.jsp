@@ -25,10 +25,10 @@
                   <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
                   Booking Management
               </a>
-              <a class="nav-link" href="${pageContext.servletContext.contextPath}/admin/comment">
+              <%-- <a class="nav-link" href="${pageContext.servletContext.contextPath}/admin/comment">
                   <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
                   Comment Management
-              </a>
+              </a> --%>
           </div>
       </div>
   </nav>

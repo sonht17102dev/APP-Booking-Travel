@@ -39,21 +39,21 @@
 			</div>
 		</div>
 		<div class="row">
-			<h3>${list_comments.size()}comments</h3>
+			<h3>${list_comments.size()} comments</h3>
 			<c:forEach var="comment" items="${list_comments}">
 				<div class="col-lg-12">
-					<h5>${comment.name }</h5>
+					<h5>${comment.name}</h5>
 					<p>
 						<span>${comment.createdDate}</span>
 					</p>
 					<p>${comment.commentMessage}</p>
-					<p>${comment.rate}star</p>
+					<p>${comment.rate} star</p>
 				</div>
 			</c:forEach>
 		</div>
 		<div class="row">
 			<div class="col-lg-12">
-				<h3 class="heading mb-4">Star Rating</h3>
+				<h3 class="heading mb-2">Star Rating</h3>
 
 				<form method="post" class="star-rating"
 					action="${pageContext.servletContext.contextPath}/news">
@@ -73,18 +73,18 @@
 							</div>
 						</div>
 					</div>
-			<div class="form-group">
-				<label for="message">Message</label>
-				<textarea name="comment" id="" cols="30" rows="7"
-					class="form-control" placeholder="Leave your idea about this post"></textarea>
+					<div class="form-group">
+						<label for="message">Message</label>
+						<textarea name="comment" id="" cols="30" rows="7"
+							class="form-control" placeholder="Leave your idea about this post"></textarea>
+					</div>
+					<div class="form-group">
+						<input type="submit" value="Post Comment"
+							class="btn btn-primary py-3 px-5">
+					</div>
+				</form>
 			</div>
-			<div class="form-group">
-				<input type="submit" value="Post Comment"
-					class="btn btn-primary py-3 px-5">
-			</div>
-			</form>
 		</div>
-	</div>
 	</div>
 </section>
 

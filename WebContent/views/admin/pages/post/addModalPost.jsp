@@ -23,7 +23,7 @@
 								<input type="text" class="form-control" id="postnameAdd" name="postnameAdd">
 							</div>
 							<div class="col-6">
-								<label for="createdDateAdd" class="col-form-label">Start date:</label> 
+								<label for="createdDateAdd" class="col-form-label">Created Date:</label> 
 								<input type="date" class="form-control" id="createdDateAdd" name="createdDateAdd" >
 							</div>
 							

@@ -110,7 +110,7 @@ public class TourController extends BaseController {
 		String duetime = request.getParameter("duetimeUp");
 		String address = request.getParameter("addressUp");
 		String content = request.getParameter("editorUp" + id);
-		
+//		System.out.println(content);
 		Tour tour = null;
 		if (isValidInput(priceUp))
 			tour = new Tour( tourName, "", content, start, duetime, Double.parseDouble(priceUp), address, "active");
@@ -120,7 +120,7 @@ public class TourController extends BaseController {
 		List<String> messageErrors = validateTour(tour);
 
 		Part filePart = request.getPart("fileUp"+ id);
-		System.out.println(filePart.getSize());
+//		System.out.println(filePart.getSize());
 		String fileName = null;
 		if(filePart == null || filePart.getSize() == 0) {
 			messageErrors.add("Please select a file to upload.");

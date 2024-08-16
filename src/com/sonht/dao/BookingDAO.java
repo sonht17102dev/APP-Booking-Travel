@@ -107,14 +107,28 @@ public class BookingDAO {
 		List<BookingAdminDTO> list = new ArrayList<BookingAdminDTO>();
 		try {
 			connection = new DatabaseContext().getConnection();
-			String sql = "select * from booking where status='active' ";
+			String sql = "SELECT \r\n"
+					+ "    t.name AS tour_name,\r\n"
+					+ "    b.adults_quantity,\r\n"
+					+ "    b.children_quantity,\r\n"
+					+ "    u.fullname as customer_name,\r\n"
+					+ "    t.price AS tour_price,\r\n"
+					+ "    b.created_date\r\n"
+					+ "FROM \r\n"
+					+ "    booking b\r\n"
+					+ "JOIN \r\n"
+					+ "    tour t ON b.tour_id = t.id\r\n"
+					+ "JOIN \r\n"
+					+ "    user u ON b.user_id = u.id\r\n"
+					+ "WHERE\r\n"
+					+ "	b.status = 'active';";
 			preStatement = connection.prepareStatement(sql);
 			
 			rs = preStatement.executeQuery();
 			while (rs.next()) {
 				// retrieve data from result set row and create new booking object
 				BookingAdminDTO booking = new BookingAdminDTO(rs.getString("tour_name"), rs.getInt("adults_quantity"), rs.getInt("children_quantity"),
-						rs.getString("fullname"), rs.getDouble("tour_price"), rs.getString("created_date"));
+						rs.getString("customer_name"), rs.getDouble("tour_price"), rs.getString("created_date"));
 
 				// add it to the bookings
 				list.add(booking);

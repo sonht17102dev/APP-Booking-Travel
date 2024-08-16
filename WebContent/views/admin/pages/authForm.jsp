@@ -60,7 +60,7 @@
                                     <div class="d-flex align-items-center justify-content-evenly m-4 ">
                                         <button class="btn btn-success" type="submit" >${action == 'login' ? 'Login' : 'Sign Up'}</button>
                                         <button class="btn btn-primary" type="button" 
-                                        	onclick="window.location.href='/PRJ321x_Project1_BookingTravel/home'; return false;"
+                                        	onclick="window.location.href='${pageContext.servletContext.contextPath}/home'; return false;"
                                         >Return Home</button>
                                     </div>
                                     

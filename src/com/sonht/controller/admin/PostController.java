@@ -105,7 +105,7 @@ public class PostController extends BaseController {
 		String content = request.getParameter("editorUp" + id);
 		
 		Post post = new Post(id, postName, content, created, "active");
-		System.out.println(post);
+		System.out.println(content);
 		List<String> messageErrors = validatePost(post);
 
 		Part filePart = request.getPart("fileUp"+ id);
